@@ -35,3 +35,11 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+  img {
+    width: 100%;
+    max-width: 300px; /* Prevents images from being too large on smaller screens */
+    height: auto; /* Maintains aspect ratio */
+  }
+}
