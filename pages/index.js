@@ -3,7 +3,6 @@ import "slick-carousel/slick/slick-theme.css"; // Import carousel theme
 import Slider from "react-slick"; // Import the react-slick component
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import './styles.css'; // Ensure this is present in your entry file
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -74,70 +73,120 @@ export default function Home() {
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap", // Enables responsive wrapping
-            justifyContent: "center", // Centers content
-            gap: "20px", // Adds space between images
-            maxWidth: "90%", // Constrains container width
-            margin: "0 auto", // Centers the container on the page
+            flexWrap: "wrap", // Allows items to wrap on smaller screens
+            justifyContent: "center",
+            gap: "20px",
+            maxWidth: "90%", // Limit container width
+            margin: "0 auto", // Center the container
           }}
-        >       
+        >   
             <img
              src="/property1a.jpg"
              alt="Property 1 - Image A"
              style={{
-               width: "100%", // Ensures the image scales properly within its container
-               maxWidth: "300px", // Limits image size to prevent stretching
-               height: "auto", // Maintains aspect ratio
+               width: "100%", // Scale image based on parent container
+               maxWidth: "300px", // Sets the maximum width
+               height: "auto", // Maintain aspect ratio
                borderRadius: "20px",
-               objectFit: "cover",
+               objectFit: "cover", // Crops the image while maintaining proportions
                padding: "10px",
              }}
            />
-           
-            
+         
             <img
-              src="/property1b.jpg"
+             src="/property1b.jpg"
+             alt="Property 1 - Image A"
+             style={{
+               width: "100%", // Scale image based on parent container
+               maxWidth: "300px", // Sets the maximum width
+               height: "auto", // Maintain aspect ratio
+               borderRadius: "20px",
+               objectFit: "cover", // Crops the image while maintaining proportions
+               padding: "10px",
+             }}
+           />
+
+          </div>
+          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio / Office | Dainfern - R2,000 / month</p>
+        </div>
+        <div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap", // Allows items to wrap
+              justifyContent: "center", // Aligns content
+              gap: "20px", // Adds consistent spacing
+              maxWidth: "90%", // Limits container width
+              margin: "0 auto", // Centers the container
+            }}
+          >
+
+            <img
+              src="/property2a.jpg"
               alt="Property 1 - Image A"
               style={{
-                width: "100%", // Make the image adjust to its container
-                maxWidth: "350px", // Prevent it from becoming too large
+                width: "100%", // Scale image based on parent container
+                maxWidth: "300px", // Sets the maximum width
                 height: "auto", // Maintain aspect ratio
                 borderRadius: "20px",
-                objectFit: "cover",
+                objectFit: "cover", // Crops the image while maintaining proportions
+                padding: "10px",
+              }}
+            />
+            
+            <img
+              src="/property2b.jpg"
+              alt="Property 1 - Image A"
+              style={{
+                width: "100%", // Scale image based on parent container
+                maxWidth: "300px", // Sets the maximum width
+                height: "auto", // Maintain aspect ratio
+                borderRadius: "20px",
+                objectFit: "cover", // Crops the image while maintaining proportions
                 padding: "10px",
               }}
             />
             
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio / Office | Dainfern - R2,000 / month</p>
-        </div>
-        <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", gap: "30px" }}>
-            <img
-              src="/property2a.jpg"
-              alt="Property 2 - Image A"
-              style={{ height: "250px", width: "100%", maxWidth: "350px", borderRadius: "20px", objectFit: "cover", padding: "10px" }}
-            />
-            <img
-              src="/property2b.jpg"
-              alt="Property 2 - Image B"
-              style={{ height: "250px", width: "100%", maxWidth: "350px", borderRadius: "20px", objectFit: "cover", padding: "10px" }}
-            />
-          </div>
           <p style={{ textAlign: "center", marginTop: "10px" }}>Shared Office | Durban </p>
         </div>
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", gap: "30px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap", // Allows items to wrap
+              justifyContent: "center", // Aligns content
+              gap: "20px", // Adds consistent spacing
+              maxWidth: "90%", // Limits container width
+              margin: "0 auto", // Centers the container
+            }}
+          >
             <img
               src="/property3a.jpg"
-              alt="Property 3 - Image A"
-              style={{ height: "250px", width: "100%", maxWidth: "350px", borderRadius: "20px", objectFit: "cover", padding: "10px" }}
+              alt="Property 1 - Image A"
+              style={{
+                width: "100%", // Scale image based on parent container
+                maxWidth: "300px", // Sets the maximum width
+                height: "auto", // Maintain aspect ratio
+                borderRadius: "20px",
+                objectFit: "cover", // Crops the image while maintaining proportions
+                padding: "10px",
+              }}
             />
+            
             <img
               src="/property3b.jpg"
-              alt="Property 3 - Image B"
-              style={{ height: "250px", width: "100%", maxWidth: "350px", borderRadius: "20px", objectFit: "cover", padding: "10px" }}
+              alt="Property 1 - Image A"
+              style={{
+                width: "100%", // Scale image based on parent container
+                maxWidth: "300px", // Sets the maximum width
+                height: "auto", // Maintain aspect ratio
+                borderRadius: "20px",
+                objectFit: "cover", // Crops the image while maintaining proportions
+                padding: "10px",
+              }}
             />
+            
           </div>
           <p style={{ textAlign: "center", marginTop: "10px" }}>Conference Rooms | Fourways </p>
         </div>
@@ -227,6 +276,18 @@ export default function Home() {
           transform: translateY(-2px);
           box-shadow: 0 6px 12px rgba(47, 209, 186, 0.4);
         }
+
+        @media screen and (max-width: 768px) {
+        img {
+          width: 100%;
+          max-width: 250px; /* Reduces max image size for mobile screens */
+          height: auto;
+        }
+
+        .container {
+          flex-direction: column; /* Stack items vertically */
+        }
+      }
       `}</style>
 
 <footer style={{ textAlign: "center", marginTop: "40px", padding: "20px", fontSize: "14px", color: "#2FD1BA", backgroundColor: "#f0000" }}>
