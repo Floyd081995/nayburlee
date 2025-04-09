@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick-theme.css"; // Import carousel theme
 import Slider from "react-slick"; // Import the react-slick component
 import Head from "next/head";
 import { useState, useEffect } from "react";
+import './styles.css'; // Ensure this is present in your entry file
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -70,23 +71,35 @@ export default function Home() {
       <h2 style={{ marginTop: "40px", textAlign: "center" }}>Featured Properties</h2>
       <Slider {...sliderSettings}>
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px", gap: "30px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "20px",
+            maxWidth: "90%", // Limits the container width
+            margin: "0 auto", // Centers the container
+          }}
+>
             <img
-              src="/property1a.jpg"
-              alt="Property 1 - Image A"
-              style={{
-                width: "100%", // Adjust to fit container
-                height: "auto", // Maintain aspect ratio
-                borderRadius: "20px",
-                objectFit: "cover",
-                padding: "10px",
-              }}
-            />
+             src="/property1a.jpg"
+             alt="Property 1 - Image A"
+             style={{
+               width: "100%", // Make the image adjust to its container
+               maxWidth: "350px", // Prevent it from becoming too large
+               height: "auto", // Maintain aspect ratio
+               borderRadius: "20px",
+               objectFit: "cover",
+               padding: "10px",
+             }}
+           />
+            
             <img
               src="/property1b.jpg"
               alt="Property 1 - Image A"
               style={{
-                width: "100%", // Adjust to fit container
+                width: "100%", // Make the image adjust to its container
+                maxWidth: "350px", // Prevent it from becoming too large
                 height: "auto", // Maintain aspect ratio
                 borderRadius: "20px",
                 objectFit: "cover",
@@ -219,8 +232,6 @@ export default function Home() {
   © {new Date().getFullYear()} Nayburlee Incorporated. 
   <br /> All rights reserved.
 </footer>
-
-
 
     </div>
   );
