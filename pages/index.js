@@ -74,25 +74,26 @@ export default function Home() {
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "20px",
-            maxWidth: "90%", // Limits the container width
-            margin: "0 auto", // Centers the container
+            flexWrap: "wrap", // Enables responsive wrapping
+            justifyContent: "center", // Centers content
+            gap: "20px", // Adds space between images
+            maxWidth: "90%", // Constrains container width
+            margin: "0 auto", // Centers the container on the page
           }}
->
+        >       
             <img
              src="/property1a.jpg"
              alt="Property 1 - Image A"
              style={{
-               width: "100%", // Make the image adjust to its container
-               maxWidth: "350px", // Prevent it from becoming too large
-               height: "auto", // Maintain aspect ratio
+               width: "100%", // Ensures the image scales properly within its container
+               maxWidth: "300px", // Limits image size to prevent stretching
+               height: "auto", // Maintains aspect ratio
                borderRadius: "20px",
                objectFit: "cover",
                padding: "10px",
              }}
            />
+           
             
             <img
               src="/property1b.jpg"

@@ -38,8 +38,8 @@ code {
 
 @media screen and (max-width: 768px) {
   img {
-    max-width: 250px; /* Reduce size for smaller screens */
-    width: 100%; /* Scale to fit container */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    max-width: 250px; /* Reduces image size for smaller screens */
+    height: auto; /* Maintains aspect ratio */
   }
 }
