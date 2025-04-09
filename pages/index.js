@@ -74,13 +74,26 @@ export default function Home() {
             <img
               src="/property1a.jpg"
               alt="Property 1 - Image A"
-              style={{ height: "250px", width: "100%", maxWidth: "350px", borderRadius: "20px", objectFit: "cover", padding: "10px" }}
+              style={{
+                width: "100%", // Adjust to fit container
+                height: "auto", // Maintain aspect ratio
+                borderRadius: "20px",
+                objectFit: "cover",
+                padding: "10px",
+              }}
             />
             <img
               src="/property1b.jpg"
-              alt="Property 1 - Image B"
-              style={{ height: "250px", width: "100%", maxWidth: "350px", borderRadius: "20px", objectFit: "cover", padding: "10px" }}
+              alt="Property 1 - Image A"
+              style={{
+                width: "100%", // Adjust to fit container
+                height: "auto", // Maintain aspect ratio
+                borderRadius: "20px",
+                objectFit: "cover",
+                padding: "10px",
+              }}
             />
+            
           </div>
           <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio / Office | Dainfern - R2,000 / month</p>
         </div>
