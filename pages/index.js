@@ -48,12 +48,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <h1 className="hero-title">
-          Rent Commercial Space <span className="highlight">by the Hour</span> in SA
+          Rent Workspace <span className="highlight">by the Hour or day</span> in SA
         </h1>
         <p className="hero-subtitle">
-          Book shared offices, conference rooms, pop-ups and hybrid workspaces.
+          We do shared offices, conference rooms, pop-ups and hybrid workspaces.
+          <br /><strong>No leases</strong>.
           <br /> 
-          <br />Rent by the hour or day—<strong>no deposits</strong>.
           <br />First 50 signups get <span className="highlight">10% off</span>!
         </p>
         <a
@@ -192,20 +192,21 @@ export default function Home() {
         </div>
       </Slider>
 
+      <p style={{ textAlign: "center",fontSize: "25px", marginTop: "20px" }}>✅ Match guaranteed | Verified listings | No spam </p>
+
       {/* Testimonial Section */}
-      <h2 style={{ marginTop: "40px", marginBottom: "10px", textAlign: "center" }}>Trusted by Local Businesses</h2>
-      <div style={{ marginTop: "10px", borderRadius: "10px" }}>
+      <h2 style={{ marginTop: "60px", marginBottom: "0px", textAlign: "left" }}>Trusted by Local Businesses</h2>
+      <div style={{ marginTop: "10px", borderRadius: "5px" }}>
 
         <Slider {...testimonialSettings}>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
-            <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
+            <p style={{  marginTop: "10px", fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
               "Saved R8,000 compared to traditional leases. Booked a Sandton meeting room same-day for our investor pitch."
             </p>
             <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Sarah • Tech Startup Founder • Cape Town</p>
           </div>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
-            <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "The conference room we booked was ideal for our quarterly meeting. We saved 15% compared to other providers. Highly recommend their service."
+            <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>"The conference room we booked was ideal for our quarterly meeting. We saved 15% compared to other providers. Highly recommend their service."
             </p>
             <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Moses • Board Advisor • Johannesburg</p>
           </div>
@@ -219,7 +220,7 @@ export default function Home() {
       </div>
 
       {/* Follow Us Section */}
-      <div id="follow" style={{ marginTop: "2rem" }}>
+      <div id="follow" style={{ marginTop: "2rem", textAlign: "center" }}>
         <h2>Follow Us</h2>
         <p>Stay connected and follow us on social media!</p>
         <a href="https://www.linkedin.com/company/nayburlee" target="_blank" style={iconStyle}>
