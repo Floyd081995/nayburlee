@@ -107,7 +107,7 @@ export default function Home() {
            />
 
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio / Office | Dainfern - R2,000 / month</p>
+          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio / Office | Dainfern - R800/hour or R2,000/day. Studio has 3 microphones, accommodates 4 people. Excludes recording and editing</p>
         </div>
         <div>
           <div
