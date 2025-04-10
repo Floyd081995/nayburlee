@@ -8,8 +8,8 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
-        {/* Google Analytics Tracking Code */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JENDSF7B43"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
