@@ -8,6 +8,18 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
+        {/* Google Analytics Tracking Code */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-JENDSF7B43');
+            `,
+          }}
+        />
       </Head>
       <body style={{ fontFamily: 'Jost, sans-serif', backgroundColor: '#000000', color: 'white' }}>
         <Main />
