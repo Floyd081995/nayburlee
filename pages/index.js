@@ -62,7 +62,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Enquire Now
+          Get Matched Today
         </a>
       </section>
 
