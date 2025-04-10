@@ -48,7 +48,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <h1 className="hero-title">
-          Rent Workspace <span className="highlight">by the Hour or day</span> in SA
+          Rent Workspace <span className="highlight">by the hour or day</span> in SA
         </h1>
         <p className="hero-subtitle">
           We do shared offices, conference rooms, pop-ups and hybrid workspaces.
