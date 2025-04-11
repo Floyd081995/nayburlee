@@ -55,7 +55,7 @@ export default function Home() {
           <br /><strong>Ideal for Startups and SMEs</strong>
           <br /> 
           <br /><strong>No leases.</strong>
-          <br />First 50 signups get <span className="highlight">10% off</span>!
+          <br />First 10 signups get <span className="highlight">25% off</span>!
         </p>
         <a
           href="https://forms.gle/koniNevv7vnhSA4g8"
