@@ -48,12 +48,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <h1 className="hero-title">
-          Rent Workspace <span className="highlight">by the hour or day</span> in SA
+        Need workspace <span className="highlight">by the hour or day</span> in SA?
         </h1>
         <p className="hero-subtitle">
-          We do shared offices, conference rooms, pop-ups and hybrid workspaces.
-          <br /><strong>No leases</strong>.
+          Find shared offices, conference rooms, pop-ups and hybrid workspaces
+          <br /><strong>Ideal for Startups and SMEs</strong>
           <br /> 
+          <br /><strong>No leases.</strong>
           <br />First 50 signups get <span className="highlight">10% off</span>!
         </p>
         <a
@@ -192,10 +193,12 @@ export default function Home() {
         </div>
       </Slider>
 
-      <p style={{ textAlign: "center",fontSize: "25px", marginTop: "20px" }}>✅ Match guaranteed | Verified listings | No spam </p>
+      <p style={{ textAlign: "center",fontSize: "25px", marginTop: "20px" }}>✅ Match guaranteed | Verified listings | No spam</p>
+         <p style={{ textAlign: "center",fontSize: "25px",color: "#2fd1ba", marginTop: "10px" }}><br /><strong>No subscriptions. No long-term commitments. Just the space you need, when you need it.</strong>
+         </p>
 
       {/* Testimonial Section */}
-      <h2 style={{ marginTop: "60px", marginBottom: "0px", textAlign: "left" }}>Trusted by Local Businesses</h2>
+      <h2 style={{ marginTop: "60px", marginBottom: "0px", textAlign: "left" }}>Trusted by Users </h2>
       <div style={{ marginTop: "10px", borderRadius: "5px" }}>
 
         <Slider {...testimonialSettings}>
@@ -295,7 +298,6 @@ export default function Home() {
   © {new Date().getFullYear()} Nayburlee Incorporated. 
   <br /> All rights reserved.
 </footer>
-
     </div>
   );
 }
