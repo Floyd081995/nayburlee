@@ -51,7 +51,7 @@ export default function Home() {
         Need workspace <span className="highlight">by the hour or day</span> in SA?
         </h1>
         <p className="hero-subtitle">
-          Find shared offices, conference rooms, pop-ups and hybrid workspaces
+          Find Podcast studios, shared offices, conference rooms, and hybrid workspaces
           <br /><strong>Ideal for Startups and SMEs</strong>
           <br /> 
           <br /><strong>No leases.</strong>
