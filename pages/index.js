@@ -40,19 +40,18 @@ export default function Home() {
   return (
     <div style={{ position: "relative", fontFamily: "'Inter', Arial, sans-serif", maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
       <Head>
-        <title>Nayburlee | On-Demand Workspaces in South Africa</title>
-        <meta name="description" content="Rent desks, offices, and meeting rooms by the hour or day with no long-term leases. Perfect for freelancers, startups, and teams." />
+        <title>Nayburlee | Matchmaking for Podcast Studios and Creative Spaces</title>
+        <meta name="description" content="Find and book podcast studios, creative spaces, and content hubs by the hour or day. Perfect for creators, podcasters, and entrepreneurs." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       {/* Hero Section */}
       <section className="hero">
         <h1 className="hero-title">
-        Need workspace <span className="highlight">by the hour or day</span> in SA?
+        Looking for a <span className="highlight">Podcast Studio or Creative Workspace</span> in South Africa?
         </h1>
         <p className="hero-subtitle">
-          Find Podcast studios, shared offices, conference rooms, and hybrid workspaces
-          <br /><strong>Ideal for Startups and SMEs</strong>
+        Discover verified studios, content creation rooms, and hybrid workspaces — all bookable by the hour, day, or month.
           <br /> 
           <br /><strong>No leases.</strong>
           <br />First 10 signups get <span className="highlight">25% off</span>!
@@ -63,7 +62,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Get Matched Today
+          Get Matched Now
         </a>
       </section>
 
@@ -108,7 +107,9 @@ export default function Home() {
            />
 
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio / Office | Dainfern - R800/hour or R2,000/day. Studio has 3 microphones, accommodates 4 people. Excludes recording and editing</p>
+          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio | Dainfern - R800/hour or R2,000/day.
+            Studio has 3 microphones, soundproof walls, and space for 4 creators.
+            Excludes recording and editing.</p>
         </div>
         <div>
           <div
@@ -193,29 +194,76 @@ export default function Home() {
         </div>
       </Slider>
 
-      <p style={{ textAlign: "center",fontSize: "25px", marginTop: "20px" }}>✅ Match guaranteed | Verified listings | No spam</p>
+      <p style={{ textAlign: "center",fontSize: "40px", marginTop: "20px" }}>Why us?</p>
+
+      {/* Insert Comparison Table Below Testimonials */}
+      <table style={{ borderCollapse: "collapse", width: "100%", backgroundColor: "transparent", color: "white", textAlign: "center" }}>
+        <thead>
+          <tr>
+            <th style={{ border: "1px solid white", padding: "10px;" }}></th>
+            <th style={{ border: "1px solid white", padding: "10px;" }}>
+            <img src="/nayburlee-icon.png" alt="Nayburlee Logo" style={{ maxHeight: "40px", width: "auto", height: "40px" }} />
+            </th>
+            <th style={{ border: "1px solid white", padding: "10px", paddingTop: "30px"}}>Other Offerings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>Verified Listings</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>Strategic Matches to Support & Cultivate Creative Environments</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>Simple Plug-and-Play Platform</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>Dedicated to Hybrid and Creative Spaces</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>Curated Options Only (no endless search result pages)</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>Save Time, Get Better Results</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
+          </tr>
+        </tbody>
+      </table>
+
          <p style={{ textAlign: "center",fontSize: "25px",color: "#2fd1ba", marginTop: "10px" }}><br /><strong>No subscriptions. No long-term commitments. Just the space you need, when you need it.</strong>
          </p>
+         <p style={{ textAlign: "center",fontSize: "25px", marginTop: "20px" }}>✅ Match guaranteed | No spam</p>
 
       {/* Testimonial Section */}
       <h2 style={{ marginTop: "60px", marginBottom: "0px", textAlign: "left" }}>Trusted by Users </h2>
       <div style={{ marginTop: "10px", borderRadius: "5px" }}>
-
         <Slider {...testimonialSettings}>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
-            <p style={{  marginTop: "10px", fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "Saved R8,000 compared to traditional leases. Booked a Sandton meeting room same-day for our investor pitch."
+            <p style={{ marginTop: "10px", fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
+              "Recorded our first podcast episode in a studio that matched our budget perfectly."
             </p>
             <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Sarah • Tech Startup Founder • Cape Town</p>
           </div>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
-            <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>"The conference room we booked was ideal for our quarterly meeting. We saved 15% compared to other providers. Highly recommend their service."
+            <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
+              "The conference room we booked was ideal for our quarterly meeting. We saved 15% compared to other providers. Highly recommend their service."
             </p>
             <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Moses • Board Advisor • Johannesburg</p>
           </div>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
             <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "I prefer the flexibility of renting workspaces without long-term commitments. Booked a desk for a day through Nayburlee, no hassle"
+              "I prefer the flexibility of renting workspaces without long-term commitments. Booked a desk for a day through Nayburlee, no hassle."
             </p>
             <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Thandi • Consultant • Sandton</p>
           </div>
