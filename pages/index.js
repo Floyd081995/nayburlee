@@ -40,8 +40,8 @@ export default function Home() {
   return (
     <div style={{ position: "relative", fontFamily: "'Inter', Arial, sans-serif", maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
       <Head>
-        <title>Nayburlee | Matchmaking for Podcast Studios and Creative Spaces</title>
-        <meta name="description" content="Find and book podcast studios, creative spaces, and content hubs by the hour or day. Perfect for creators, podcasters, and entrepreneurs." />
+        <title>Nayburlee | Creative and Hybrid Spaces</title>
+        <meta name="description" content="Find and book podcast studios, creative and hybrid workspaces by the hour or day. Perfect for creators, podcasters, and startups." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
