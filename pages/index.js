@@ -48,10 +48,10 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <h1 className="hero-title">
-        Looking for a <span className="highlight">Podcast Studio or Creative Workspace</span> in South Africa?
+        Create. <span className="highlight">Collaborate.</span> Work.
         </h1>
         <p className="hero-subtitle">
-        Discover verified studios, content creation rooms, and hybrid workspaces — all bookable by the hour, day, or month.
+        Discover verified studios, content creation rooms, and hybrid workspaces in South Africa — all bookable by the hour, day, or month.
           <br /> 
           <br /><strong>No leases.</strong>
           <br />First 10 signups get <span className="highlight">25% off</span>!
