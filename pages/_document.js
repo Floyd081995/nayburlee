@@ -22,16 +22,16 @@ export default function Document() {
         />
 
         {/* Open Graph Metadata for Link Previews */}
-        <meta property="og:title" content="Nayburlee | Podcast Studios, Creative & Hybrid Workspaces in South Africa" />
-        <meta property="og:description" content="Find and book podcast studios, content creation spaces, and hybrid workspaces — by the hour, day, or month. No leases, no hassle." />
+        <meta property="og:title" content="Nayburlee | Create. Collaborate. Work." />
+        <meta property="og:description" content="Find and book podcast studios, content creation spaces, and hybrid workspaces in South Africa — by the hour, day, or month. No leases, no hassle." />
         <meta property="og:image" content="https://nayburlee.co.za/preview-image.jpeg" />
         <meta property="og:url" content="https://nayburlee.co.za" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Card Metadata */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nayburlee | Podcast Studios, Creative & Hybrid Workspaces in South Africa" />
-        <meta name="twitter:description" content="Book podcast studios, content creation spaces, and hybrid workspaces instantly. Flexible, verified listings on demand." />
+        <meta name="twitter:title" content="Nayburlee | Create. Collaborate. Work." />
+        <meta name="twitter:description" content="Book podcast studios, content creation spaces, and hybrid workspaces in South Africa, instantly. Flexible, verified listings on demand." />
         <meta name="twitter:image" content="https://nayburlee.co.za/preview-image.jpeg" />
       </Head>
       <body style={{ fontFamily: 'Jost, sans-serif', backgroundColor: '#000000', color: 'white' }}>
