@@ -253,21 +253,21 @@ export default function Home() {
         <Slider {...testimonialSettings}>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
             <p style={{ marginTop: "10px", fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "Recorded our first podcast episode in a studio that matched our budget perfectly."
+              "Recorded our first podcast episode in a studio that matched our ideal budget."
             </p>
-            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Sarah • Tech Startup Founder • Cape Town</p>
+            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Minenhle • Podcast Founder • Cape Town</p>
           </div>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
             <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "The conference room we booked was ideal for our quarterly meeting. We saved 15% compared to other providers. Highly recommend their service."
+              "We booked a creative room through them. Matched with a functional space that was 15% cheaper. Highly recommend."
             </p>
-            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Moses • Board Advisor • Johannesburg</p>
+            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Liam • Content Videographer • Johannesburg</p>
           </div>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
             <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "I prefer the flexibility of renting workspaces without long-term commitments. Booked a desk for a day through Nayburlee, no hassle."
+              "I prefer the flexibility of renting workspaces without long-term commitments. Found and booked a space for a day with the team through Nayburlee, no hassle."
             </p>
-            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Thandi • Consultant • Sandton</p>
+            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Thandi • Startup Marketer  • Sandton</p>
           </div>
         </Slider>
       </div>
