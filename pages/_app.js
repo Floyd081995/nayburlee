@@ -4,6 +4,9 @@ import '../src/globals.css'; // Ensure the correct path to the CSS file
 // Import other dependencies
 import Link from "next/link";
 
+// Import Hero component (adjust path if necessary)
+import Hero from "../components/Hero";
+
 export default function App({ Component, pageProps }) {
   // The functional component must contain the return inside its body
   return (
@@ -19,6 +22,8 @@ export default function App({ Component, pageProps }) {
           </a>
         </Link>
       </nav>
+      {/* Hero section added here */}
+      <Hero />
       <Component {...pageProps} />
     </>
   );
