@@ -22,7 +22,7 @@ export default function Document() {
         />
 
         {/* Open Graph Metadata for Link Previews */}
-        <meta property="og:title" content="Nayburlee | Create. Collaborate. Work." />
+        <meta property="og:title" content="Nayburlee | Create. Collaborate. Grow." />
         <meta property="og:description" content="Find and book podcast studios, content creation spaces, and hybrid workspaces in South Africa — by the hour, day, or month. No leases, no hassle." />
         <meta property="og:image" content="https://nayburlee.co.za/preview-image.jpeg" />
         <meta property="og:url" content="https://nayburlee.co.za" />
@@ -30,7 +30,7 @@ export default function Document() {
 
         {/* Twitter Card Metadata */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nayburlee | Create. Collaborate. Work." />
+        <meta name="twitter:title" content="Nayburlee | Create. Collaborate. Grow." />
         <meta name="twitter:description" content="Book podcast studios, content creation spaces, and hybrid workspaces in South Africa, instantly. Flexible, verified listings on demand." />
         <meta name="twitter:image" content="https://nayburlee.co.za/preview-image.jpeg" />
       </Head>
