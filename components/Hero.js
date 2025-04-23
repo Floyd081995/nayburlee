@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export default function Hero() {
   const phrases = [
     { text: "Create.", color: " #2fd1ba" },
-    { text: "Connect.", color: " #ffffff" },
+    { text: "Collaborate.", color: " #ffffff" },
     { text: "Grow.", color: " #3357FF"}
   ];
   const [text, setText] = useState("");
@@ -19,7 +19,7 @@ export default function Hero() {
       if (window.innerWidth > 768) {
         setFontSize("4rem"); // Desktop font size
       } else {
-        setFontSize("2.2rem"); // Mobile font size
+        setFontSize("2rem"); // Mobile font size
       }
     };
 
