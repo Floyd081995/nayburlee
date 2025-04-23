@@ -45,16 +45,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <h1 className="hero-title">
-        Create. <span className="highlight">Collaborate.</span> Work.
-        </h1>
+      {/* Subtitle Hero Section */}
+      <section className="subtitle-hero" style={{ marginTop: "0px" }}>
         <p className="hero-subtitle">
-        Discover verified studios, content creation rooms, and hybrid workspaces in South Africa — all bookable by the hour, day, or month.
+          Match with verified studios, content creation rooms, and hybrid workspaces in South Africa — all bookable by the hour, day, or month.
           <br /> 
           <br /><strong>No leases.</strong>
-          <br />First 10 signups get <span className="highlight">25% off</span>!
+          <br />First 10 bookings get <span className="highlight">25% off</span> !
         </p>
         <a
           href="https://forms.gle/koniNevv7vnhSA4g8"
@@ -62,7 +59,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Get Matched Now
+          Start Matching
         </a>
       </section>
 
@@ -107,9 +104,9 @@ export default function Home() {
            />
 
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio | Dainfern - R800/hour or R2,000/day.
-            Studio has 3 microphones, soundproof walls, and space for 4 creators.
-            Excludes recording and editing.</p>
+          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio | Johannesburg - Dainfern 
+            <br />Studio has 3 microphones, soundproof walls, and space for 4 creators.
+            </p>
         </div>
         <div>
           <div
@@ -150,7 +147,10 @@ export default function Home() {
             />
             
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Shared Office | Durban </p>
+          <p style={{ textAlign: "center", marginTop: "10px" }}> Content Creation Room | Durban - Glenwood
+          <br />Equipped with lighting, green screen, and recording tools for high-quality photography, videography, and livestreaming. Capacity: 4 creators.
+
+          </p>
         </div>
         <div>
           <div
@@ -190,7 +190,9 @@ export default function Home() {
             />
             
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Conference Rooms | Fourways </p>
+          <p style={{ textAlign: "center", marginTop: "10px" }}>Hybrid Space | Cape Town - Woodstock 
+          <br />Flexible workspace designed for both teamwork and solo productivity. Includes Wi-Fi, ergonomic furniture, and presentation tools. Capacity: Up to 10 people.
+          </p>
         </div>
       </Slider>
 
@@ -288,12 +290,12 @@ export default function Home() {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
-          font-family: 'Inter', Arial, sans-serif;
+          font-family: 'Jost', Arial, sans-serif;
         }
 
         /* Hero Section */
-        .hero {
-          text-align: center;
+        .Hero {
+          text-align: left;
           padding: 0px 0 20px; /* Reduced margin to tighten the gap */
         }
         .hero-title {
@@ -309,6 +311,22 @@ export default function Home() {
         .highlight {
           color: #2fd1ba;
           font-weight: 600;
+        }
+
+        /* Subtitle Hero Section */
+        .subtitle-hero {
+          margin-top: 0; /* Removes gap */
+          text-align: center;
+        }
+        .subtitle-hero-text {
+          font-size: 1.2rem;
+          line-height: 1.6;
+          max-width: 700px;
+          margin: 0 auto 30px;
+        }
+        .highlight-text {
+          color: #2fd1ba;
+          font-weight: bold;
         }
 
         /* CTA Button */
@@ -330,17 +348,24 @@ export default function Home() {
         }
 
         @media screen and (max-width: 768px) {
-        img {
-          width: 100%;
-          max-width: 250px; /* Reduces max image size for mobile screens */
-          height: auto;
+          img {
+            width: 100%;
+            max-width: 250px; /* Reduces max image size for mobile screens */
+            height: auto;
+          }
+          .container {
+            flex-direction: column; /* Stack items vertically */
+          }
+          .subtitle-hero-text {
+            font-size: 1rem; /* Smaller font size for mobile screens */
+          }
+          .cta-button {
+            font-size: 1rem; /* Adjust CTA button font size */
+            padding: 10px 20px; /* Reduce padding for mobile */
+          }
         }
-
-        .container {
-          flex-direction: column; /* Stack items vertically */
-        }
-      }
       `}</style>
+
 
 <footer style={{ textAlign: "center", marginTop: "40px", padding: "20px", fontSize: "14px", color: "#2FD1BA", backgroundColor: "#f0000" }}>
   © {new Date().getFullYear()} Nayburlee Incorporated. 
