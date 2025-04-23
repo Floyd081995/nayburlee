@@ -196,7 +196,7 @@ export default function Home() {
         </div>
       </Slider>
 
-      <p style={{ textAlign: "center",fontSize: "40px", marginTop: "20px" }}>Why us?</p>
+      <p style={{ textAlign: "center",fontSize: "40px", marginTop: "20px" }}><strong>Why us?</strong></p>
 
       {/* Insert Comparison Table Below Testimonials */}
       <table style={{ borderCollapse: "collapse", width: "100%", backgroundColor: "transparent", color: "white", textAlign: "center" }}>
@@ -243,7 +243,7 @@ export default function Home() {
         </tbody>
       </table>
 
-         <p style={{ textAlign: "center",fontSize: "25px",color: "#2fd1ba", marginTop: "10px" }}><br /><strong>No subscriptions. No long-term commitments. Just the space you need, when you need it.</strong>
+         <p style={{ textAlign: "center",fontSize: "25px",color: "#2fd1ba", marginTop: "10px" }}><br />No subscriptions. No long-term commitments. Just the space you need, when you need it.
          </p>
          <p style={{ textAlign: "center",fontSize: "25px", marginTop: "20px" }}>✅ Match guaranteed | No spam</p>
 
@@ -259,13 +259,13 @@ export default function Home() {
           </div>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
             <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "We booked a creative room through them. Matched with a functional space that was 15% cheaper. Highly recommend."
+              "We booked a creative room through them. Matched with a functional space that was 15% cheaper than our previous option. Highly recommend."
             </p>
             <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Liam • Content Videographer • Johannesburg</p>
           </div>
           <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
             <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "I prefer the flexibility of renting workspaces without long-term commitments. Found and booked a space for a day with the team through Nayburlee, no hassle."
+              "I prefer the flexibility of renting workspaces without long-term commitments. Found and booked a space with the team through Nayburlee, no hassle."
             </p>
             <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Thandi • Startup Marketer  • Sandton</p>
           </div>

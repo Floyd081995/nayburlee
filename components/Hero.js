@@ -19,7 +19,7 @@ export default function Hero() {
       if (window.innerWidth > 768) {
         setFontSize("4rem"); // Desktop font size
       } else {
-        setFontSize("2rem"); // Mobile font size
+        setFontSize("1.8rem"); // Mobile font size
       }
     };
 
