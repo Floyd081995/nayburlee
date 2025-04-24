@@ -51,7 +51,7 @@ export default function Home() {
           Match with verified studios, content creation rooms, and hybrid workspaces in South Africa — all bookable by the hour, day, or month.
           <br /> 
           <br /><strong>No leases.</strong>
-          <br />First 10 bookings get <span className="highlight">25% off</span> !
+          <br />First 10 bookings get <span className="highlight">15% off</span> !
         </p>
         <a
           href="https://forms.gle/koniNevv7vnhSA4g8"
