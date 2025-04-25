@@ -1,5 +1,8 @@
 // Import global styles
 import '../src/globals.css'; // Ensure the correct path to the CSS file
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 // Import other dependencies
 import Link from "next/link";
