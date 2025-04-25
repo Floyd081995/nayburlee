@@ -1,6 +1,6 @@
 import { collection, getDocs } from 'firebase/firestore';
 import Link from 'next/link';
-import { db } from '@/lib/firebasedb';
+import { db } from '/lib/firebasedb';
 
 export default function SpacesOverview({ listings }) {
   return (
