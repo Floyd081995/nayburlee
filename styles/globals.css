@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
 
+
 html,
 body {
   background-color: #f8fafc; /* Or black, depending on your preference */
@@ -42,4 +43,30 @@ code {
     max-width: 250px; /* Reduces image size for smaller screens */
     height: auto; /* Maintains aspect ratio */
   }
+}
+
+/* Carousel Container */
+.carousel-container {
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Individual Slide */
+.carousel-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* Ensures consistent height for all slides */
+  overflow: hidden;
+}
+
+/* Image Styling */
+.carousel-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain; /* Ensures the image scales without cropping */
+  margin: 0 auto;
+  display: block;
 }
