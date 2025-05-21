@@ -55,3 +55,7 @@
   padding-left: 15px;
   margin: 15px 0;
 }
+
+input[type="checkbox"] {
+  accent-color: #2FD1BA; /* This ensures all checkboxes are green */
+}

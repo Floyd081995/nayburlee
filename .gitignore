@@ -31,3 +31,6 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# feedback-1st-prototype-firebase-adminsdk-fbsvc-05d12f6a81
+serviceAccountKey.json

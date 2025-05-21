@@ -1,45 +1,476 @@
+/* global.css */
+
+/* Import Google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
 
-html,
-body {
-  background-color: #f8fafc; /* Or black, depending on your preference */
-  padding: 0;
-  margin: 0;
-  font-family: 'Jost', sans-serif; /* Ensure this matches the Google Font name */
+/* Global Reset and Base Styles */
+html, body {
+  font-family: 'Jost', sans-serif !important; /* Apply Jost globally */
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #000000 !important; /* Light gray background */
+  color: #ffffff !important;              /* Dark gray text */
+  line-height: 1.6 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
 * {
   box-sizing: border-box;
 }
 
-main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-code {
-  background: #e2e8f0;
+/* Main Header Container */
+.main-header {
+  background-color: #000000;
   border-radius: 5px;
-  padding: 0.75rem;
-  font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  
 }
 
-.container {
-  height: 100vh;
+/* Navigation Container:
+   Uses flexbox to place the logo at the left and buttons at the right */
+.nav-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;  /* First child left, second child right */
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+/* Logo Container */
+.logo-container {
+  display: flex;
   align-items: center;
 }
 
+/* Logo Styling */
+.logo {
+  width: 60%; /* Adjust width as needed */
+  height: auto;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  gap: 15px;      /* Spacing between buttons */
+  align-items: center;
+  
+}
+
+/* Button Styling */
+.contact-button,
+.about-us-button {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Specific Button Backgrounds */
+.list-space-button {
+  background-color:#3357FF;
+  
+}
+
+.about-us-button {
+  background-color: #333;
+}
+
+.contact-button {
+  border: 2px solid #2fd1ba; /* Sets border width, style, and color */
+  color: white;
+  background: transparent; /* Optional: keeps background clear */
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover Effects */
+.contact-button:hover {
+  background-color: #444;
+  color: #2fd1ba;
+}
+.list-space-button:hover {
+  background-color: #ffffff30;
+  color: #2fd1ba;
+}
+
+.about-us-button:hover {
+  background-color: #444;
+  color: #2fd1ba;
+}
+
+.cta-button {
+  background: #2fd1ba;
+  color: white;
+  min-width: 120px; /*optional: makes button look better*/
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  border: "none";
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: "pointer";
+  transition: "background 0.4s";
+  box-shadow: 0 4px 6px rgba(47, 209, 186, 0.3);
+  font-size: 18px; /* Adjust CTA button font size */
+  padding: 12px 28px; /* Reduce padding for mobile */
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(47, 209, 186, 0.4);
+}
+
+.highlight {
+  color: #2fd1ba;
+  font-weight: 600;
+}
+
+/* Responsive Tweaks */
 @media screen and (max-width: 768px) {
-  img {
-    width: 100%;
-    max-width: 250px; /* Reduces image size for smaller screens */
-    height: auto; /* Maintains aspect ratio */
+  .nav-container {
+    flex-direction: row;
+  }
+  .button-container {
+    gap: 10px;
+  }
+  .contact-button,
+  .about-us-button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+.testimonial-card {
+  background: #000000;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.testimonial-text {
+  margin-top: 5px;
+  font-style: italic;
+  font-size: 18px;
+  color: #2fd1ba;
+}
+
+.testimonial-author {
+  font-weight: bold;
+  color: #2fd1ba;
+  text-align: center;
+}
+
+
+.bodylogo:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 auto;
+  /* Optional: add some bottom margin for spacing */
+  margin-bottom: 24px;
+}
+.table-responsive table {
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+@media (max-width: 600px) {
+  .table-responsive table,
+  .table-responsive th,
+  .table-responsive td {
+    font-size: 20px !important;
+  }
+}
+@media (max-width: 400px) {
+  .table-responsive table,
+  .table-responsive th,
+  .table-responsive td {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  h1, h2, h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  .hero-subtitle,
+  .subtitle-hero-text,
+  p {
+    font-size: 1rem !important;
+  }
+  .cta-button,
+  .list-space-button {
+    font-size: 1rem !important;
+    padding: 10px 18px !important;
+  }
+  table,
+  th,
+  td {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  h1, h2, h3 {
+    font-size: 1.1rem !important;
+  }
+ 
+  .hero-subtitle,
+  .subtitle-hero-text,
+  p {
+    font-size: 0.9rem !important;
+  }
+  .cta-button,
+  .list-space-button {
+    font-size: 0.9rem !important;
+    padding: 8px 12px !important;
+  }
+  table,
+  th,
+  td {
+    font-size: 10px !important;
+  }
+}
+
+.how-we-work-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 400px) {
+  .how-we-work-steps {
+    gap: 6px;
+  }
+  .how-we-work-step {
+    min-width: 0;
+    flex: 1 1 120px;
+    max-width: 150px;
+    padding: 0 4px;
+  }
+  .how-we-work-step img {
+    width: 60px;
+    height: 60px;
+  }
+  .how-we-work-step p {
+    font-size: 0.63rem !important;
+    line-height: 1.2 !important;
+    padding: 0 3px !important;
+    text-align: center !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Hide nav-toggle by default (desktop) */
+.nav-toggle {
+  display: none;
+}
+
+/* Show nav-toggle on mobile */
+@media (max-width: 700px) {
+  .nav-toggle {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #2FD1BA;
+    cursor: pointer;
+    z-index: 10000;
+    margin-left: 1px;
+  }
+  .button-container {
+    display: none !important;
+  }
+  .main-content-container {
+    padding: 8px !important;
+  }
+  .hero-section, .Hero {
+    margin-top: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+.nav-modal {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  right: 20px;    /* Match .nav-modal*/
+  top: 0px; /* Match .nav-modal */
+  left: 9px;
+  height: 100vh;
+  background: rgb(0, 0, 0);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
+  will-change: opacity;
+  
+}
+
+.nav-modal-header {
+  position: absolute;
+  top: 10px;
+  right: 17px;    /* Match .nav-modal*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 28px;
+}
+
+.nav-modal-logo img {
+  height: 60px !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+.nav-modal-close {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #2FD1BA;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.nav-modal:not(.open) {
+  pointer-events: none;
+}
+
+.nav-modal.open {
+  opacity: 1;
+}
+
+.nav-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; /* slightly more space between buttons */
+  margin-top: 100px; /* space below header */
+  margin-bottom: 60px; /* less space above footer */
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+}
+
+.nav-modal.open .nav-modal-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-modal-footer {
+  position: absolute;
+  bottom: 60px; /* move icons up from the bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 18px; /* more space between icons if needed */
+}
+
+.nav-modal-content .contact-button,
+.nav-modal-content .about-us-button {
+  font-size: 1.9rem !important;
+  min-width: unset !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  text-align: center !important;
+  transition: text-decoration 0.2s !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.nav-modal-content .contact-button:hover,
+.nav-modal-content .about-us-button:hover {
+  text-decoration: underline;
+  background: none;
+  
+}
+
+.nav-modal-content .modal-link {
+  font-size: 1.9rem;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.nav-modal-content .modal-link:hover {
+  text-decoration: underline;
+  color: #2fd1ba;
+  background: none;
+}
+
+.footer-social-icon img {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+  filter: brightness(1.1);
+  transition: filter 0.2s;
+}
+.footer-social-icon img:hover {
+  filter: brightness(1.5);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Space to.... section */
+.hero-title {
+  font-size: 4rem;
+  line-height: 1.2;
+  color: #fff;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+}
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 1.3rem;
   }
 }

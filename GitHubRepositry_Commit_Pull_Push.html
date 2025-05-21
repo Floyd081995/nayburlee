@@ -1,0 +1,80 @@
+Sure! Here’s a simple explanation and a cheat sheet for you:
+
+---
+
+## **Explain Like I’m 10**
+
+Imagine you and your friends are building a LEGO city together.  
+You don’t want to mess up the city while you’re building a new house, so you build your house on a separate table first.  
+When your house is ready and looks good, you show it to your friends.  
+If everyone likes it, you add it to the city!
+
+- **Feature branch:** Your own table to build something new.
+- **Commit:** Take a picture of your progress so you don’t lose it.
+- **Push:** Share your picture with your friends.
+- **Pull request:** Ask your friends if you can add your house to the city.
+- **Merge:** Add your house to the city when everyone agrees.
+
+---
+
+## **Git Cheat Sheet for Teams**
+
+### **1. Start a New Feature**
+```sh
+git checkout main
+git pull
+git checkout -b feature/my-new-thing
+```
+
+### **2. Work and Save Progress**
+```sh
+git add .
+git commit -m "Describe what you did"
+git push origin feature/my-new-thing
+```
+
+### **3. Open a Pull Request**
+- Go to GitHub.
+- Click “Compare & pull request” for your branch.
+- Ask for review.
+
+### **4. Merge When Ready**
+- Only merge when your feature is finished and tested.
+- Click “Merge pull request” on GitHub.
+
+### **5. Keep Your Branch Updated**
+```sh
+git checkout main
+git pull
+git checkout feature/my-new-thing
+git merge main
+```
+
+---
+
+## **Best Practices**
+- **One feature = one branch.**
+- **Commit often with clear messages.**
+- **Push your branch to GitHub regularly.**
+- **Open a pull request when your feature is ready.**
+- **Merge only when everyone agrees it’s good.**
+
+---
+
+**This way, your project stays neat, and you never break the city for your friends!**
+
+
+
+# Start a new feature
+git checkout -b feature/my-feature
+
+# Work, commit, push as usual
+git add .
+git commit -m "My new feature"
+git push origin feature/my-feature
+
+# Merge feature into staging for testing
+git checkout staging
+git pull
+git merge feature/my-feature
+git push origin staging

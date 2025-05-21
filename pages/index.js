@@ -3,6 +3,12 @@ import "slick-carousel/slick/slick-theme.css"; // Import carousel theme
 import Slider from "react-slick"; // Import the react-slick component
 import Head from "next/head";
 import { useState, useEffect } from "react";
+import Hero from "../components/Hero"; // Import the Hero component
+import TestimonialCard from "/components/TestimonialCard";
+import SubscriptionForm from '../components/SubscriptionForm';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -10,6 +16,7 @@ export default function Home() {
   // Ensure component is mounted for SSR compatibility
   useEffect(() => {
     setMounted(true);
+    AOS.init({ once: true, duration: 800 }); // Initialize AOS for animations
   }, []);
 
   if (!mounted) return null;
@@ -38,34 +45,252 @@ export default function Home() {
   };
 
   return (
-    <div style={{ position: "relative", fontFamily: "'Inter', Arial, sans-serif", maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
+    <div
+      className="main-content-container"
+      style={{
+        position: "relative",
+        width: "100%",
+        margin: "0",
+        padding: "50px", // This will be overridden on mobile by the CSS above
+      }}
+    >
       <Head>
         <title>Nayburlee | Creative and Hybrid Spaces</title>
         <meta name="description" content="Find and book podcast studios, creative and hybrid workspaces by the hour or day. Perfect for creators, podcasters, and startups." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      {/* Subtitle Hero Section */}
-      <section className="subtitle-hero" style={{ marginTop: "0px" }}>
-        <p className="hero-subtitle">
-          Match with verified studios, content creation rooms, and hybrid workspaces in South Africa — all bookable by the hour, day, or month.
-          <br /> 
-          <br /><strong>No leases.</strong>
-          <br />First 10 bookings get <span className="highlight">15% off</span> !
-        </p>
-        <a
-          href="https://forms.gle/koniNevv7vnhSA4g8"
-          className="cta-button"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Start Matching
-        </a>
-      </section>
+    {/* Add Hero Component Here */}
+    <Hero />
 
-      {/* Property Carousel Section */}
-      <h2 style={{ marginTop: "40px", textAlign: "center" }}>Featured Properties</h2>
-      <Slider {...sliderSettings}>
+      {/* Subtitle Hero Section */}
+      <section
+      data-aos="fade-up" // Enabling fade animation
+      style={{
+      backgroundImage: "/", // Replace with your image path
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      padding: "10px 20px",
+      textAlign: "center",
+      color: "white",
+  }}
+>
+  <p className="hero-subtitle"
+    style={{ fontSize: "1.5rem", marginTop: "10px"}}>
+    Discover creative and hybrid workspaces in South Africa tailored to your needs — all bookable by the hour, day, week or month.
+    <br />
+    <br />
+    <strong>No leases.</strong>
+    <br />
+    First 10 bookings get <span className="highlight">15% off</span> !
+ 
+  </p>
+  <a
+    href="/user-request"
+    className="cta-button"
+    style={{
+      marginTop: "0px",
+      marginBottom: "0px",
+      display: "inline-block",
+    }}
+  >
+    Get Matched
+  </a>
+</section>
+
+{/* List Space CTA Section */}
+<section 
+data-aos="fade-up" // Enabling fade animation
+style={{
+          backgroundColor: "black",
+          color: "white",
+          padding: "32px 24px",
+          textAlign: "center",
+          marginTop: "5px",
+          borderRadius: "10px",
+          marginBottom: "10px",
+        }}
+>
+  <p className="hero-subtitle" style={{
+    textAlign: "center",
+    marginTop: "0px",
+    marginBottom: "8px",
+    fontSize: "1.5rem"
+  }}>Or looking to list space with us?</p>
+{/* Listing Button */}
+          <div
+  className="list-space-container"
+  style={{
+    textAlign: "center",
+    marginTop: "0px",
+  }}
+>
+  <a
+    className="list-space-button"
+    href="https://forms.gle/uf2REGMbp7bDXzbG6"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: "inline-block",
+      margin: "0 auto",
+      minWidth: "120px", // optional: makes button look better
+      padding: "12px 28px",
+      color: "#fff",
+      borderRadius: "6px",
+      fontWeight: "bold",
+      fontSize: "18px",
+      textDecoration: "none",
+      border: "none",
+      cursor: "pointer",
+      transition: "background 0.4s",
+    }}
+  >
+    Partner With Us
+  </a>
+</div>
+
+</section>
+
+{/* What is Nayburlee Section */}
+<section
+data-aos="fade-up" // Enabling fade animation
+        style={{
+          backgroundColor: "white",
+          color: "#2fd1ba",
+          padding: "40px 30px",
+          textAlign: "center",
+          marginTop: "30px",
+          borderRadius: "10px",
+        }}
+      >
+        <h2 style={{marginTop: "10px", marginBottom: "5px", fontSize: "40px"}}>What is Nayburlee?</h2>
+        <img src="nayburlee-logo-image.png" alt="Nayburlee Logo" width="6%" ></img>
+        <p style={{ marginTop: "10px", marginBottom: "15px", fontSize: "20px",fontWeight: "bold"}}>
+          Nayburlee is South Africa’s leading platform for discovering and booking flexible creative workspaces—from studios to hybrid offices.
+          </p> 
+  
+          <p style={{ marginTop: "5px",  marginBottom: "15px", fontSize: "20px"}}>We connect creators, podcasters, and startups with fully equipped spaces that match their vibe and workflow—no leases, no hassle, just seamless access.
+          </p>
+          <p style={{ marginTop: "5px", marginBottom: "10px", fontSize: "20px"}}>Our smart matchmaking system simplifies booking, helping space owners fill idle time while giving users on-demand access to inspiring spaces designed for productivity and creativity.
+        </p>
+  </section>
+
+{/* How We Work Section */}
+  <section 
+  data-aos="fade-up"
+  style={{ marginTop: "60px", textAlign: "center" }}>
+  <h2 style={{ textAlign: "center", fontSize: "40px", marginTop: "20px" }}>How We Work</h2>
+  <div
+    className="how-we-work-steps"
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "stretch",
+      gap: "40px",
+      marginTop: "20px",
+    }}
+  >
+    <div className="how-we-work-step" style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <img src="share_your_needs.png" alt="1. Share Your Needs" style={{ width: "90px", height: "90px", objectFit: "contain" }} />
+      <p style={{ marginTop: "15px", fontWeight: "bold", fontSize: "20px"}}>1. Share Your Requirements</p>
+      <p style={{ marginTop: "5px" }}>Tell us what kind of space you want.</p>
+    </div>
+    <div className="how-we-work-step" style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <img src="get_matched.png" alt="2. Get Matched" style={{ width: "90px", height: "90px", objectFit: "contain" }} />
+      <p style={{ marginTop: "15px", fontWeight: "bold", fontSize: "20px" }}>2. Get Matched</p>
+      <p style={{ marginTop: "5px" }}>We connect you with verified listings.</p>
+    </div>
+    <div className="how-we-work-step" style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <img src="book_space.png" alt="3. Book & Create" style={{ width: "90px", height: "90px", objectFit: "contain" }} />
+      <p style={{ marginTop: "15px", fontWeight: "bold", fontSize: "20px"}}>3. Reserve</p>
+      <p style={{ marginTop: "5px" }}>Book your space and get started.</p>
+    </div>
+  </div>
+</section>
+
+
+      {/* Why Us Section */}
+      <br />
+      {/* Comparison Table */}
+      <h2 
+       data-aos="fade-up"
+      style={{ textAlign: "center", fontSize: "40px", marginTop: "20px", width: "100%" }}>
+        <strong>Why us?</strong>
+      </h2>
+      <div className="table-responsive">
+      <table
+      data-aos="fade-up" // Enabling fade animation
+        style={{
+          margin: "0 auto",
+          borderCollapse: "collapse",
+          width: "100%",
+          backgroundColor: "transparent",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        <thead>
+          <tr>
+            <th style={{ border: "1px solid white", padding: "12px", fontSize: "18px" }}></th>
+            <th style={{ border: "1px solid white", padding: "12px" }}>
+              <img src="/nayburlee-icon.png"
+                  alt="Nayburlee Logo"
+                  style={{
+                     display: "block",
+                     margin: "0 auto",
+                     maxWidth: "120px",    // or 80px if you want it larger
+                     maxHeight: "60px",   // keeps it from being too tall
+                     width: "100%",       // responsive within the cell
+                     height: "auto",
+                     objectFit: "contain",
+                  }}
+              />
+              <div style={{ marginTop: "5px", fontWeight: "bold" }}></div>
+              <div style={{ marginTop: "5px", fontWeight: "bold" }}></div>
+            </th>
+            <th style={{ border: "1px solid white", padding: "12px", fontWeight: "bold" }}>Other Offerings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px" }}>Verified Listings & Hosts</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px" }}>Smart Matching Algorithm</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>❌</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px" }}>Flexible Online Booking System</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>❌</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px" }}>Dedicated to Hybrid & Creative Spaces</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>❌</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px" }}>Curated Options (No Endless Search Results)</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>❌</td>
+          </tr>
+          <tr>
+            <td style={{ border: "1px solid white", padding: "10px" }}>Booking Support & Protection with Secure Payments (No Leases, No Hassles)</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+            <td style={{ border: "1px solid white", padding: "10px" }}>✅</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      {/* Featured Properties Section */} {/* Property Carousel*/}
+      <h2 
+      data-aos="fade-up" // <--- Add this line
+      style={{ textAlign: "center",fontSize: "40px", marginTop: "50px", color:"#2fd1ba" }}>Featured Properties</h2>
+      <Slider {...sliderSettings} data-aos="fade-up"> {/* Optional, for the carousel */}
         <div>
         <div
           style={{
@@ -104,7 +329,7 @@ export default function Home() {
            />
 
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Podcast Studio | Johannesburg - Dainfern 
+          <p style={{ textAlign: "center", marginTop: "10px", fontSize: "18px" }}>Podcast Studio | Johannesburg - Dainfern 
             <br />Studio has 3 microphones, soundproof walls, and space for 4 creators.
             </p>
         </div>
@@ -147,7 +372,7 @@ export default function Home() {
             />
             
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}> Content Creation Room | Durban - Glenwood
+          <p style={{ textAlign: "center", marginTop: "10px", fontSize: "18px" }}> Content Creation Room | Durban - Glenwood
           <br />Equipped with lighting, green screen, and recording tools for high-quality photography, videography, and livestreaming. Capacity: 4 creators.
 
           </p>
@@ -190,92 +415,84 @@ export default function Home() {
             />
             
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>Hybrid Space | Cape Town - Woodstock 
+          <p style={{ textAlign: "center", marginTop: "10px", fontSize: "18px" }}>Hybrid Space | Cape Town - Woodstock 
           <br />Flexible workspace designed for both teamwork and solo productivity. Includes Wi-Fi, ergonomic furniture, and presentation tools. Capacity: Up to 10 people.
           </p>
         </div>
       </Slider>
 
-      <p style={{ textAlign: "center",fontSize: "40px", marginTop: "20px" }}><strong>Why us?</strong></p>
+            {/* Ready to Find Your Ideal Space Section */}  
+            <section
+              data-aos="fade-up" // Enabling fade animation
+              style={{
+                backgroundColor: "#2fd1ba",
+                color: "white",
+                padding: "40px 20px",
+                textAlign: "center",
+                marginTop: "60px",
+                borderRadius: "10px",
+              }}
+            >
+              <h2 style={{fontSize: "30px"}}>Ready to Find Your ideal Space?</h2>
+              <p style={{ marginTop: "10px", fontSize: "20px" }}>
+                No subscriptions. No long-term commitments. Just the space you need, when you need it.
+              </p>
+              <p style={{ marginTop: "10px", fontSize: "20px" }}>
+                Join a community of creators and professionals who trust Nayburlee.
+              </p>
+              <p style={{ marginTop: "10px", fontSize: "20px" }}>
+                ✅ Match guaranteed
+              </p>
+              <a
+                href="/user-request"
+                className="cta-button"
+                style={{
+                  marginTop: "5px",
+                  display: "inline-block",
+                  backgroundColor: "#ffffff",
+                  color: "#2fd1ba",
+                }}
+              >
+                Get Started
+              </a>
+            </section>
 
-      {/* Insert Comparison Table Below Testimonials */}
-      <table style={{ borderCollapse: "collapse", width: "100%", backgroundColor: "transparent", color: "white", textAlign: "center" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid white", padding: "10px;" }}></th>
-            <th style={{ border: "1px solid white", padding: "10px;" }}>
-            <img src="/nayburlee-icon.png" alt="Nayburlee Logo" style={{ maxHeight: "40px", width: "auto", height: "40px" }} />
-            </th>
-            <th style={{ border: "1px solid white", padding: "10px", paddingTop: "30px"}}>Other Offerings</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>Verified Listings</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>Strategic Matches to Support & Cultivate Creative Environments</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>Simple Plug-and-Play Platform</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>Dedicated to Hybrid and Creative Spaces</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>Curated Options Only (no endless search result pages)</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
-          </tr>
-          <tr>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>Save Time, Get Better Results</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>✅</td>
-            <td style={{ border: "1px solid white", padding: "10px;" }}>❌</td>
-          </tr>
-        </tbody>
-      </table>
-
-         <p style={{ textAlign: "center",fontSize: "25px",color: "#2fd1ba", marginTop: "10px" }}><br />No subscriptions. No long-term commitments. Just the space you need, when you need it.
-         </p>
-         <p style={{ textAlign: "center",fontSize: "25px", marginTop: "20px" }}>✅ Match guaranteed | No spam</p>
-
+         <br/>
+          
       {/* Testimonial Section */}
-      <h2 style={{ marginTop: "60px", marginBottom: "0px", textAlign: "left" }}>Trusted by Users </h2>
-      <div style={{ marginTop: "10px", borderRadius: "5px" }}>
-        <Slider {...testimonialSettings}>
-          <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
-            <p style={{ marginTop: "10px", fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "Recorded our first podcast episode in a studio that matched our ideal budget."
-            </p>
-            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Minenhle • Podcast Founder • Cape Town</p>
-          </div>
-          <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
-            <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "We booked a creative room through them. Matched with a functional space that was 15% cheaper than our previous option. Highly recommend."
-            </p>
-            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Liam • Content Videographer • Johannesburg</p>
-          </div>
-          <div style={{ background: "#f9f9f9", borderRadius: "10px", padding: "20px" }}>
-            <p style={{ fontStyle: "italic", fontSize: "18px", color: "#ffffff", textAlign: "center" }}>
-              "I prefer the flexibility of renting workspaces without long-term commitments. Found and booked a space with the team through Nayburlee, no hassle."
-            </p>
-            <p style={{ fontWeight: "bold", color: "#2fd1ba", textAlign: "center" }}>- Thandi • Startup Marketer  • Sandton</p>
-          </div>
-        </Slider>
+      <section
+      data-aos="fade-up" // Enabling fade animation
+      >
+      <h2 style={{textAlign: "center",fontSize: "40px", marginTop: "30px", marginBottom:"10px"}}>Trusted by Users </h2>
+      <div style={{ marginTop: "5px", borderRadius: "5px" }}>
+      <Slider {...testimonialSettings}>
+        <TestimonialCard
+          text="'Recorded our first podcast episode in a studio that matched our ideal budget.'"
+          author="- Minenhle • Podcast Founder • Cape Town"
+        />
+        <TestimonialCard
+          text="'We booked a creative room through them. Matched with a functional space that was 15% cheaper than our previous option. Highly recommend.'"
+          author="- Liam • Content Videographer • Johannesburg"
+        />
+        <TestimonialCard
+          text="'I prefer the flexibility of renting workspaces without long-term commitments. Found and booked a space with the team through Nayburlee, no hassle.'"
+          author="- Thandi • Startup Marketer • Sandton"
+        />
+    </Slider>
+      </div>
+      </section>
+
+      {/* Subscription Form Section */}
+      <div data-aos="fade-up"> {/* Enabling fade animation*/}
+        <SubscriptionForm />
       </div>
 
       {/* Follow Us Section */}
-      <div id="follow" style={{ marginTop: "2rem", textAlign: "center" }}>
-        <h2>Follow Us</h2>
-        <p>Stay connected and follow us on social media!</p>
+      <div id="follow" 
+      data-aos="fade-up" // Enabling fade animation
+      style={{ marginTop: "2rem", textAlign: "center" }}>
+        <h2 style={{fontSize: "30px"}}>Follow Us</h2>
+        <p style={{fontSize: "20px"}}>Stay connected and follow us on social media!</p>
         <a href="https://www.linkedin.com/company/nayburlee" target="_blank" style={iconStyle}>
           <img src="/linkedin-icon.png" alt="LinkedIn" style={iconImageStyle} />
         </a>
@@ -290,7 +507,6 @@ export default function Home() {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
-          font-family: 'Jost', Arial, sans-serif;
         }
 
         /* Hero Section */
@@ -308,10 +524,6 @@ export default function Home() {
           max-width: 700px;
           margin: 0 auto 30px;
         }
-        .highlight {
-          color: #2fd1ba;
-          font-weight: 600;
-        }
 
         /* Subtitle Hero Section */
         .subtitle-hero {
@@ -320,7 +532,6 @@ export default function Home() {
         }
         .subtitle-hero-text {
           font-size: 1.2rem;
-          line-height: 1.6;
           max-width: 700px;
           margin: 0 auto 30px;
         }
@@ -329,48 +540,18 @@ export default function Home() {
           font-weight: bold;
         }
 
-        /* CTA Button */
-        .cta-button {
-          background: #2fd1ba;
-          color: white;
-          padding: 15px 30px;
-          border-radius: 8px;
-          font-weight: 600;
-          font-size: 1.1rem;
-          text-decoration: none;
-          display: inline-block;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 6px rgba(47, 209, 186, 0.3);
-        }
-        .cta-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 12px rgba(47, 209, 186, 0.4);
-        }
-
-        @media screen and (max-width: 768px) {
-          img {
-            width: 100%;
-            max-width: 250px; /* Reduces max image size for mobile screens */
-            height: auto;
-          }
-          .container {
-            flex-direction: column; /* Stack items vertically */
-          }
-          .subtitle-hero-text {
-            font-size: 1rem; /* Smaller font size for mobile screens */
-          }
-          .cta-button {
-            font-size: 1rem; /* Adjust CTA button font size */
-            padding: 10px 20px; /* Reduce padding for mobile */
-          }
-        }
       `}</style>
 
 
-<footer style={{ textAlign: "center", marginTop: "40px", padding: "20px", fontSize: "14px", color: "#2FD1BA", backgroundColor: "#f0000" }}>
-  © {new Date().getFullYear()} Nayburlee Incorporated. 
-  <br /> All rights reserved.
+<footer style={{ textAlign: "center", marginTop: "40px", padding: "20px", fontSize: "14px", color: "#2FD1BA" }}>
+  <p>© {new Date().getFullYear()} Nayburlee Incorporated. All rights reserved.</p>
+  <div style={{ marginTop: "10px" }}>
+    <a href="/about" style={{ marginRight: "10px", color: "#2FD1BA" }}>About Us</a>
+    <a href="/contact" style={{ marginRight: "10px", color: "#2FD1BA" }}>Contact</a>
+    <a href="/privacy" style={{ color: "#2FD1BA" }}>Privacy Policy</a>
+  </div>
 </footer>
+
     </div>
   );
 }

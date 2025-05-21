@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 
+
 export default function Document() {
   return (
     <Html lang="en">
@@ -21,20 +22,25 @@ export default function Document() {
           }}
         />
 
-        {/* Open Graph Metadata for Link Previews */}
+        {/* Updated Open Graph Metadata */}
         <meta property="og:title" content="Nayburlee | Create. Collaborate. Grow." />
-        <meta property="og:description" content="Find and book podcast studios, content creation spaces, and hybrid workspaces in South Africa — by the hour, day, or month. No leases, no hassle." />
-        <meta property="og:image" content="https://nayburlee.co.za/preview-image.jpeg" />
+        <meta property="og:description" content="Book verified podcast studios, content creation spaces, and hybrid workspaces in South Africa — by the hour or day. No leases, no hassle." />
+        <meta property="og:image" content="https://nayburlee.co.za/preview-image.jpeg" /> {/* Update image URL */}
         <meta property="og:url" content="https://nayburlee.co.za" />
         <meta property="og:type" content="website" />
 
-        {/* Twitter Card Metadata */}
+        {/* Updated Twitter Card Metadata */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Nayburlee | Create. Collaborate. Grow." />
-        <meta name="twitter:description" content="Book podcast studios, content creation spaces, and hybrid workspaces in South Africa, instantly. Flexible, verified listings on demand." />
-        <meta name="twitter:image" content="https://nayburlee.co.za/preview-image.jpeg" />
+        <meta name="twitter:description" content="Book verified podcast studios, content creation spaces, and hybrid workspaces in South Africa — by the hour or day. No leases, no hassle." />
+        <meta name="twitter:image" content="https://nayburlee.co.za/preview-image.jpeg" /> {/* Update image URL */}
+
+        {/* SEO Metadata */}
+        <meta name="description" content="Nayburlee matches creators, podcasters, and startups with flexible, bookable verified spaces across South Africa, including studios, content creation rooms, and hybrid workspaces" />
+        <meta name="keywords" content="Nayburlee, creative spaces South Africa, hybrid workspaces, content creation rooms, flexible spaces, bookable studios, workspace solutions, podcast studios" />
+        <meta name="robots" content="index, follow" />
       </Head>
-      <body style={{ fontFamily: 'Jost, sans-serif', backgroundColor: '#000000', color: 'white' }}>
+      <body>
         <Main />
         <NextScript />
       </body>

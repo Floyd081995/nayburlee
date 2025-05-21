@@ -11,25 +11,6 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopIndex, setLoopIndex] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
-  const [fontSize, setFontSize] = useState("4rem"); // Default to desktop size
-
-  useEffect(() => {
-    // Dynamically adjust font size based on screen width
-    const updateFontSize = () => {
-      if (window.innerWidth > 768) {
-        setFontSize("4rem"); // Desktop font size
-      } else {
-        setFontSize("1.8rem"); // Mobile font size
-      }
-    };
-
-    // Call the function once on mount and attach event listener
-    updateFontSize();
-    window.addEventListener("resize", updateFontSize);
-
-    // Cleanup event listener on component unmount
-    return () => window.removeEventListener("resize", updateFontSize);
-  }, []);
 
   useEffect(() => {
     const handleTyping = () => {
@@ -66,30 +47,17 @@ export default function Hero() {
         flexDirection: "column",
         textAlign: "center",
         marginTop: "20px",
-        marginBottom: "5px",
-        padding: "0 20px",
+        marginBottom: "0px",
+        padding: "0 10px",
         width: "100%",
         boxSizing: "border-box",
-        height: "150px", // Stable height
+        height: "150px",
       }}
     >
-      <h1
-        style={{
-          fontSize: fontSize, // Dynamically set font size
-          lineHeight: "1.2",
-          color: "#FFFFFF",
-          whiteSpace: "nowrap",
-        }}
-      >
+      <h1 className="hero-title">
         Space To{" "}
         <span style={{ color }}>{text}</span>
-        <span
-          style={{
-            borderRight: "2px solid",
-            marginLeft: "5px",
-            animation: "blink 1s infinite", // Typing cursor animation
-          }}
-        ></span>
+        <span></span>
       </h1>
     </section>
   );
