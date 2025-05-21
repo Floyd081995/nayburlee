@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { db } from "/lib/firebasedb";
-import { doc, getDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp } from "firebase/firestore";
 
 export default function BookingForm({ listingId }) {
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -10,7 +11,7 @@ export default function BookingForm({ listingId }) {
     message: "",
   });
 
-   const [bookingType, setBookingType] = useState("");
+  const [bookingType, setBookingType] = useState("");
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -98,15 +99,18 @@ export default function BookingForm({ listingId }) {
       const bookingData = {
       ...form,
       listingId,
-      bookingType: bookingType.toLowerCase(), // <-- convert to lowercase!
+      bookingType: bookingType.toLowerCase(),
       startDate,
-      endDate, // <-- Always use the actual endDate
+      endDate,
       startTime: bookingType === "Hourly" ? startTime : null,
       endTime: bookingType === "Hourly" ? endTime : null,
-      price: price > 0 ? price : 0, // <-- store as number
+      price: price > 0 ? price : 0,
+      type: "", // <-- Add this line to ensure type is never undefined
       status: "pending_owner",
       timestamp: serverTimestamp(),
     };
+
+      console.log("Booking data to save:", bookingData);
 
       const response = await fetch("/api/bookings/create", {
       method: "POST",
@@ -115,7 +119,7 @@ export default function BookingForm({ listingId }) {
     });
 
     const data = await response.json();
-    console.log("API response:", data);
+    console.log("API response:", data, "Status:", response.status);
 
     if (response.ok) {
       setSubmitted(true);

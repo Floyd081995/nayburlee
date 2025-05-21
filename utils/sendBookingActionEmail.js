@@ -1,3 +1,4 @@
+/* global process */
 import { Data } from '@react-google-maps/api';
 import sgMail from '@sendgrid/mail';
 
@@ -14,7 +15,7 @@ export async function sendBookingActionEmail({
   bookingType,
   capacity,
   features,
-  type,
+  listingtype,
   bookingDateTime,
   dynamicData,
   templateId
@@ -32,7 +33,7 @@ export async function sendBookingActionEmail({
       features,                // [Listing Features]
       bookingId,               // [Booking ID]
       price,                // [Booking Price]
-      type,                 // [Listing Type]
+      listingtype,              // [Listing Type]
       bookingType,            // [Booking Type]
       message,              // [Booking Duration]
       bookingDateTime,         // [Booking DateTime]

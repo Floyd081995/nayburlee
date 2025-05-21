@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
 
@@ -152,3 +152,5 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+
+export default App;

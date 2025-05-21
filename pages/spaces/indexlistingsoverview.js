@@ -3,14 +3,14 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Slider from "react-slick";
 
-export default function SpacesOverview({ serverListings }) {
+export default function SpacesOverview({ }) {
   const router = useRouter();
   const didRun = useRef(false);
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState([]);
 
   const [currentType, setCurrentType] = useState("");
-  const [locationSearch, setLocationSearch] = useState("");
+  const [locationSearch] = useState("");
 
 useEffect(() => {
   if (didRun.current) return;

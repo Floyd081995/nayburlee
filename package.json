@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "lint": "eslint ./components ./pages ./utils ./lib"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
@@ -16,7 +17,7 @@
     "aos": "^2.3.4",
     "firebase": "^11.6.1",
     "firebase-admin": "^13.3.0",
-    "next": "^15.2.4",
+    "next": "^15.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
@@ -24,7 +25,13 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.27.0",
     "@types/react-slick": "^0.23.13",
-    "eslint": "^9.25.1"
+    "eslint": "^9.27.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.1.0"
   }
+  
 }

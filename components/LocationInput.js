@@ -1,3 +1,4 @@
+/* global process */
 import { useEffect, useRef, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 
@@ -59,7 +60,7 @@ function LocationInput({ setFormData, initialValue = "" }) {
       }
     });
     // Run once on mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [setFormData]);
 
   return (

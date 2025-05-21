@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 
 export default function Hero() {
-  const phrases = [
-    { text: "Create.", color: " #2fd1ba" },
-    { text: "Collaborate.", color: " #ffffff" },
-    { text: "Grow.", color: " #3357FF"}
-  ];
   const [text, setText] = useState("");
   const [color, setColor] = useState("#FFFFFF");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -13,6 +8,12 @@ export default function Hero() {
   const [typingSpeed, setTypingSpeed] = useState(150);
 
   useEffect(() => {
+    const phrases = [
+      { text: "Create.", color: " #2fd1ba" },
+      { text: "Collaborate.", color: " #ffffff" },
+      { text: "Grow.", color: " #3357FF"}
+    ];
+
     const handleTyping = () => {
       const currentPhrase = phrases[loopIndex];
       if (isDeleting) {
@@ -36,7 +37,7 @@ export default function Hero() {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, typingSpeed, phrases, loopIndex]);
+  }, [text, isDeleting, typingSpeed, loopIndex]);
 
   return (
     <section

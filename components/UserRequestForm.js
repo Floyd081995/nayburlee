@@ -21,8 +21,6 @@ export default function UserRequestForm() {
   });
   
   
-  const [matches, setMatches] = useState([]); // State to store matching listings
-  const [submitted, setSubmitted] = useState(false); // Track form submission status
   const router = useRouter(); // Initialize Next.js router
 
   const handleChange = (e) => {

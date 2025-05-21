@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { bookingId, listingId, action, token } = req.query;
+  const { bookingId, listingId, action } = req.query;
 
   // Basic validation
   if (!bookingId || !listingId || !action) {

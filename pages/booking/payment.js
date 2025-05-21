@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "/lib/firebasedb";
+import { useRouter } from "next/router";
+
+/* global process */
 
 const RETURN_URL = process.env.NEXT_PUBLIC_PAYFAST_RETURN_URL;
 const CANCEL_URL = process.env.NEXT_PUBLIC_PAYFAST_CANCEL_URL;
