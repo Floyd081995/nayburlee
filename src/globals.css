@@ -303,6 +303,7 @@ html, body {
     margin-top: 0 !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+
   }
 }
 
@@ -461,7 +462,7 @@ html, body {
 
 @media (max-width: 700px) {
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.8rem; 
   }
 }
 @media (max-width: 600px) {
@@ -471,6 +472,7 @@ html, body {
 }
 @media (max-width: 400px) {
   .hero-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem !important;
   }
 }
+

@@ -83,8 +83,10 @@ export default function Home() {
           First 10 bookings get <span className="highlight">15% off</span> !
         </p>
         <a
-          href="/user-request"
           className="cta-button"
+          href="https://forms.gle/FHhkD2iDEKZ2urqY8"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             marginTop: "0px",
             marginBottom: "0px",
@@ -128,7 +130,7 @@ export default function Home() {
         >
           <a
             className="list-space-button"
-            href="https://forms.gle/uf2REGMbp7bDXzbG6"
+            href="https://forms.gle/Gh7Rpvkua3qquDTdA"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -334,7 +336,7 @@ export default function Home() {
           <p style={{ textAlign: "center", marginTop: "10px" }}>
             Podcast Studio | Johannesburg - Dainfern
             <br />
-            Studio has 3 microphones, soundproof walls, and space for 4 creators.
+            Studio has 3 microphones, soundproof walls, and capacity for 4 creators.
           </p>
         </div>
         <div>
@@ -446,7 +448,9 @@ export default function Home() {
         </p>
         <p style={{ marginTop: "10px", fontSize: "20px" }}>✅ Match guaranteed</p>
         <a
-          href="/user-request"
+          href="https://forms.gle/FHhkD2iDEKZ2urqY8"
+          target="_blank"
+          rel="noopener noreferrer"
           className="cta-button"
           style={{
             marginTop: "5px",
@@ -551,13 +555,13 @@ export default function Home() {
       >
         <p>© {new Date().getFullYear()} Nayburlee Incorporated. All rights reserved.</p>
         <div style={{ marginTop: "10px" }}>
-          <a href="/about" style={{ marginRight: "10px", color: "#2FD1BA" }}>
-            About Us
+          <a href="#" style={{ marginRight: "10px", color: "#2FD1BA" }}>
+            About
           </a>
-          <a href="/contact" style={{ marginRight: "10px", color: "#2FD1BA" }}>
-            Contact
+          <a href="#" style={{ marginRight: "10px", color: "#2FD1BA" }}>
+            Contact Us
           </a>
-          <a href="/privacy" style={{ color: "#2FD1BA" }}>
+          <a href="#" style={{ color: "#2FD1BA" }}>
             Privacy Policy
           </a>
         </div>

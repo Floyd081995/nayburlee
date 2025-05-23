@@ -103,7 +103,7 @@ function App({ Component, pageProps }) {
               >
                 Contact Us
               </a>
-              <a className="about-us-button" href="/about">
+              <a className="about-us-button" href="#">
                 About
               </a>
             </div>
@@ -132,7 +132,7 @@ function App({ Component, pageProps }) {
             >
               Contact Us
             </a>
-            <a className="modal-link" href="/about" onClick={closeNav}>
+            <a className="modal-link" href="#" onClick={closeNav}>
               About
             </a>
           </div>
