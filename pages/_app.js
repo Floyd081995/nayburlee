@@ -2,10 +2,9 @@ import Head from "next/head";
 import "../src/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "netlify-identity-widget/dist/netlify-identity-widget.css";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-
+import netlifyIdentity from "netlify-identity-widget";
 
 function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
