@@ -37,7 +37,12 @@ function App({ Component, pageProps }) {
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_IS_STAGING === "true") {
       netlifyIdentity.init();
-      netlifyIdentity.on("init", setUser);
+      netlifyIdentity.on("init", user => {
+        setUser(user);
+        if (!user) {
+          netlifyIdentity.open("login"); // <-- Open login modal if not logged in
+        }
+      });
       netlifyIdentity.on("login", user => {
         setUser(user);
         netlifyIdentity.close();
