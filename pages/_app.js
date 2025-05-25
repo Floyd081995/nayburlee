@@ -2,6 +2,7 @@ import Head from "next/head";
 import "../src/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "netlify-identity-widget/dist/netlify-identity-widget.css";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import netlifyIdentity from "netlify-identity-widget";
@@ -36,11 +37,13 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_IS_STAGING === "true") {
-      netlifyIdentity.init();
+      netlifyIdentity.init({
+        APIUrl: "https://staging.nayburlee.co.za/.netlify/identity"
+      });
       netlifyIdentity.on("init", user => {
         setUser(user);
         if (!user) {
-          netlifyIdentity.open("login"); // <-- Open login modal if not logged in
+          netlifyIdentity.open("login");
         }
       });
       netlifyIdentity.on("login", user => {
