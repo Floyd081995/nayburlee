@@ -163,6 +163,7 @@ export default function Home() {
           textAlign: "center",
           marginTop: "30px",
           borderRadius: "10px",
+          
         }}
       >
         <h2 style={{ marginTop: "10px", marginBottom: "5px", fontSize: "40px" }}>
