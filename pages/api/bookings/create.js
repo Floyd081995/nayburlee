@@ -6,18 +6,26 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
 
   try {
-    // Destructure at the top
+    console.log("Booking API called");
+
     const { listingId, bookingType, startDate, endDate, startTime, endTime, name, email, cell, message } = req.body;
+    console.log("Request body received:", { listingId, bookingType, startDate, endDate, startTime, endTime });
+
     if (!name || !email || !cell) {
+      console.log("Missing required fields");
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // Fetch the listing
     const listingRef = doc(db, "listings", listingId);
     const listingSnap = await getDoc(listingRef);
-    if (!listingSnap.exists()) return res.status(404).json({ error: "Listing not found" });
+    if (!listingSnap.exists()) {
+      console.log("Listing not found:", listingId);
+      return res.status(404).json({ error: "Listing not found" });
+    }
 
     const listing = listingSnap.data();
+    console.log("Listing data:", listing);
+
     const landlordEmail = listing.ownercontactInfo; // <-- Add this here
 
     const type = listing.type || "";
@@ -70,7 +78,8 @@ export default async function handler(req, res) {
     }
  
     // Add this log here:
-    console.log("API Calculated price:", price, "Booking type:", bookingType, "Listing:", listingId);
+    console.log("Calculated price:", price);
+
     // Save booking
     const bookingRef = await addDoc(collection(db, "listings", listingId, "bookings"), {
       name,
@@ -87,11 +96,9 @@ export default async function handler(req, res) {
       status: "pending_owner",
       timestamp: serverTimestamp(),
     });
-    console.log("Booking created:", bookingRef.id);
+    console.log("Booking saved with ID:", bookingRef.id);
 
-    // Fetch the listing data if not already available
-    // const listing = ... (make sure you have the listing object here)
-
+    // Send email
     await sendBookingActionEmail({
       landlordEmail: listing.ownercontactInfo,
       bookingId: bookingRef.id,
@@ -108,32 +115,7 @@ export default async function handler(req, res) {
       type,
       templateId: 'd-7ade5d01048d4fe9aceedde2322e91a0'
     });
-
-    /*await sendBookingActionEmail({
-      landlordEmail,
-      bookingId: bookingRef.id,
-      listingId,
-      name: name || "Unknown",
-      templateId: 'd-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // your other template ID
-      dynamicData: { confirmationCode: 'ABC123' }
-    });
-
-    await sendBookingActionEmail({
-      landlordEmail,
-      bookingId: bookingRef.id,
-      listingId,
-      name: name || "Unknown",
-      templateId: 'd-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx2', // <-- your payment request template ID
-      dynamicData: {
-        amountDue: price,
-        paymentLink: `https://nayburlee.com/pay?bookingId=${bookingRef.id}`,
-        // add more variables as needed
-      }
-    });*/
-
-
-    console.log("API about to send email with name:", name);
-    console.log("DEBUG: name in API before email:", name);
+    console.log("Booking action email sent");
 
     res.status(200).json({ success: true });
   } catch (error) {
