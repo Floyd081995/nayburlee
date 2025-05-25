@@ -14,8 +14,8 @@ export async function sendBookingActionEmail({
   message,
   bookingType,
   capacity,
+  listingType,
   features,
-  listingtype,
   bookingDateTime,
   dynamicData,
   templateId
@@ -33,7 +33,7 @@ export async function sendBookingActionEmail({
       features,                // [Listing Features]
       bookingId,               // [Booking ID]
       price,                // [Booking Price]
-      listingtype,              // [Listing Type]
+      listingType,              // [Listing Type]
       bookingType,            // [Booking Type]
       message,              // [Booking Duration]
       bookingDateTime,         // [Booking DateTime]

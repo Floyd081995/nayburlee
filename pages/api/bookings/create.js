@@ -102,6 +102,7 @@ export default async function handler(req, res) {
     await sendBookingActionEmail({
       landlordEmail: listing.ownercontactInfo,
       bookingId: bookingRef.id,
+      listingId: listingId,
       ownerName: listing.ownerName,
       listingName: listing.name,
       location: listing.location,
@@ -112,7 +113,7 @@ export default async function handler(req, res) {
       bookingType,
       name,
       message,
-      type,
+      listingType: type, 
       templateId: 'd-7ade5d01048d4fe9aceedde2322e91a0'
     });
     console.log("Booking action email sent");
