@@ -286,7 +286,11 @@ useEffect(() => {
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                     }}
-                    onClick={() => router.push(`/spaces/${listing.id}`)}
+                    
+                    onClick={() => router.push({
+                      pathname: `/spaces/${listing.id}`,
+                      query: {...router.query } // This keeps name and email (and any other params) in the URL
+                    })}
                     className="inline-block bg-blue-500 text-white py-2 rounded-lg shadow hover:bg-blue-600"
                   >
                     Book Space

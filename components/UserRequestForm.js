@@ -89,7 +89,9 @@ export default function UserRequestForm() {
             pathname: "/spaces/indexlistingsoverview",
             query: {
               type: userInput.type[0] || "",
-              location: userInput.location || ""
+              location: userInput.location || "",
+              name: formData.name, 
+              email: formData.contact,
             }
           });
         } else {
@@ -123,7 +125,7 @@ export default function UserRequestForm() {
         <input
           type="text"
           name="name"
-          placeholder="Full Name"
+          placeholder="Your Name & Surname"
           required
           onChange={handleChange}
           style={{
@@ -161,7 +163,7 @@ export default function UserRequestForm() {
           min={1}
           required
           value={formData.capacity}
-          onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, capacity: Number(e.target.value) })} // <--- convert to number
           style={{
             marginBottom: "10px",
             padding: "8px",

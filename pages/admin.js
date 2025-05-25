@@ -17,6 +17,14 @@ import LocationInput from "../components/LocationInput"; // ✅ Import autocompl
 import { useRef } from "react";
 
 
+function generateLocationKeywords(location) {
+  if (!location) return [];
+  return location
+    .toLowerCase()
+    .split(/[\s,]+/)
+    .filter(Boolean);
+}
+
 const firebaseConfig = {
   apiKey: "AIzaSyBB6hSwpZObxsCpnoocvM-57zLL8krsuUY",
   authDomain: "feedback-1st-prototype.firebaseapp.com",
@@ -128,6 +136,7 @@ export default function Admin() {
         const formattedEntry = {
           ...newEntry,
           location: newEntry.location,
+          location_keywords: generateLocationKeywords(newEntry.location),
           title: `${newEntry.type?.[0]} | ${newEntry.location} | ${docIdSnippet}`,
           slug: `${newEntry.type?.[0]?.toLowerCase().replace(/ /g, "-") || "unknown"}-${newEntry.location.toLowerCase().replace(/ /g, "-")}-${docIdSnippet}`,
           isActive: newEntry.isActive === undefined ? true : newEntry.isActive,
@@ -183,6 +192,7 @@ export default function Admin() {
         updateData.includedHours = updatedEntry.includedHours || {};
         updateData.features = updatedEntry.features || [];
         updateData.location = updatedEntry.location || "Unknown";
+        updateData.location_keywords = generateLocationKeywords(updateData.location);
 
   
         // ✅ **Fix: Ensure these fields update properly**
@@ -326,6 +336,7 @@ export default function Admin() {
       "ownerName",
       "ownercontactInfo",
       "location",
+      "location_keywords",
       "description",
       "images",
       "type",
@@ -382,6 +393,21 @@ export default function Admin() {
         </div>
       );
     }
+
+    if (field === "location_keywords") {
+    return (
+      <div key={field}>
+        <label>Location Keywords (auto-generated):</label>
+        <input
+          type="text"
+          value={(newEntry.location_keywords || []).join(", ")}
+          readOnly
+          style={{ background: "#f0f0f0" }}
+        />
+      </div>
+    );
+  }
+
 
     if (field === "name") {
       return (
@@ -996,6 +1022,9 @@ export default function Admin() {
             )}
             
             <p><strong>Location:</strong> {listingDoc.location}</p>
+            {listingDoc.location_keywords && (
+            <p><strong>Location Keywords:</strong> {listingDoc.location_keywords.join(", ")}</p>
+            )}
             <p><strong>Capacity:</strong> {listingDoc.capacity ? listingDoc.capacity : "Not specified"}</p>
             <p><strong>Duration:</strong> {Array.isArray(listingDoc.duration) ? listingDoc.duration.join(", ") : "Not specified"}</p>
             {listingDoc.includedHours && Object.keys(listingDoc.includedHours).length > 0 && (

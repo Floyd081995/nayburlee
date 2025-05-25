@@ -1,15 +1,29 @@
 import { useState, useEffect } from "react";
 import { db } from "/lib/firebasedb";
 import { doc, getDoc, serverTimestamp } from "firebase/firestore";
+import { useRouter } from 'next/router';
+
 
 export default function BookingForm({ listingId }) {
+const router = useRouter();
+const { name, email } = router.query;
 
   const [form, setForm] = useState({
-    name: "",
-    email: "",
+    name: name || "",
+    email: email || "",
     cell: "",
     message: "",
   });
+
+  useEffect(() => {
+        if (name || email) {
+          setForm((prev) => ({
+            ...prev,
+            name: name || prev.name,
+            email: email || prev.email,
+          }));
+        }
+      }, [name, email]);
 
   const [bookingType, setBookingType] = useState("");
 
@@ -44,7 +58,7 @@ export default function BookingForm({ listingId }) {
       }
     };
     fetchListing();
-  }, [listingId]);
+      }, [listingId]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

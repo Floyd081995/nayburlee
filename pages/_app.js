@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import netlifyIdentity from "netlify-identity-widget";
 
 function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +30,28 @@ function App({ Component, pageProps }) {
     document.body.style.overflow = navOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [navOpen]);
+
+  // Netlify Identity logic for staging only
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_IS_STAGING === "true") {
+      netlifyIdentity.init();
+      netlifyIdentity.on("init", setUser);
+      netlifyIdentity.on("login", user => {
+        setUser(user);
+        netlifyIdentity.close();
+      });
+      netlifyIdentity.on("logout", () => setUser(null));
+    }
+  }, []);
+
+  if (
+    process.env.NEXT_PUBLIC_IS_STAGING === "true" &&
+    !user
+  ) {
+    return <div>Loading authentication...</div>;
+  }
 
   return (
     <>
