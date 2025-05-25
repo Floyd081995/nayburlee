@@ -8,6 +8,8 @@ import SubscriptionForm from "../components/SubscriptionForm";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import TestimonialCard from "../components/TestimonialCard";
+import Footer from "../components/Footer";
+
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -119,7 +121,7 @@ export default function Home() {
             fontSize: "1.5rem",
           }}
         >
-          Or looking to list space with us?
+          Or looking to list space?
         </p>
         <div
           className="list-space-container"
@@ -163,7 +165,7 @@ export default function Home() {
           textAlign: "center",
           marginTop: "30px",
           borderRadius: "10px",
-          
+
         }}
       >
         <h2 style={{ marginTop: "10px", marginBottom: "5px", fontSize: "40px" }}>
@@ -545,28 +547,7 @@ export default function Home() {
         }
       `}</style>
 
-      <footer
-        style={{
-          textAlign: "center",
-          marginTop: "40px",
-          padding: "20px",
-          fontSize: "14px",
-          color: "#2FD1BA",
-        }}
-      >
-        <p>© {new Date().getFullYear()} Nayburlee Incorporated. All rights reserved.</p>
-        <div style={{ marginTop: "10px" }}>
-          <a href="#" style={{ marginRight: "10px", color: "#2FD1BA" }}>
-            About
-          </a>
-          <a href="#" style={{ marginRight: "10px", color: "#2FD1BA" }}>
-            Contact Us
-          </a>
-          <a href="#" style={{ color: "#2FD1BA" }}>
-            Privacy Policy
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

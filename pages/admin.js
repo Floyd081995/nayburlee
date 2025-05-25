@@ -15,6 +15,7 @@ import {
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import LocationInput from "../components/LocationInput"; // ✅ Import autocomplete
 import { useRef } from "react";
+import Footer from "../components/Footer";
 
 
 function generateLocationKeywords(location) {
@@ -1309,18 +1310,7 @@ export default function Admin() {
     );
   })}
 </ul>
-
-    <footer
-        style={{
-          textAlign: "center",
-          marginTop: "40px",
-          fontSize: "14px",
-          color: "#2FD1BA",
-        }}
-      >
-        © {new Date().getFullYear()} Nayburlee Incorporated. <br /> All rights
-        reserved.
-      </footer>
+  <Footer />
     </div>
 
   );

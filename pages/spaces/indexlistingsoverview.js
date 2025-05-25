@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Slider from "react-slick";
+import Footer from "../../components/Footer";
 
 export default function SpacesOverview({ }) {
   const router = useRouter();
@@ -301,10 +302,7 @@ useEffect(() => {
           )}
         </div>
       </div>
-      <footer style={{ textAlign: "center", marginTop: "40px", padding: "20px", fontSize: "14px", color: "#2FD1BA", backgroundColor: "#f0000" }}>
-        © {new Date().getFullYear()} Nayburlee Incorporated.
-        <br /> All rights reserved.
-      </footer>
+      <Footer />
     </div>
   );
 }

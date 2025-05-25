@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { db } from "/lib/firebasedb";
 import { doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { useRouter } from 'next/router';
+import Footer from "/components/Footer";
 
 
 export default function BookingForm({ listingId }) {
@@ -553,18 +554,7 @@ if (listing) {
           Submit
         </button>
       </form>
-
-      <footer
-        style={{
-          textAlign: "center",
-          marginTop: "40px",
-          fontSize: "14px",
-          color: "#2FD1BA",
-        }}
-      >
-        © {new Date().getFullYear()} Nayburlee Incorporated. <br /> All rights
-        reserved.
-      </footer>
+        <Footer />  
     </div>
   );
 }

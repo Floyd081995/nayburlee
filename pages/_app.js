@@ -149,13 +149,13 @@ function App({ Component, pageProps }) {
             <div className={`button-container${navOpen ? " open" : ""}`}>
               <a
                 className="contact-button"
-                href="#"
+                href="/contact"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Contact Us
               </a>
-              <a className="about-us-button" href="#">
+              <a className="about-us-button" href="/about" onClick={closeNav}>
                 About
               </a>
             </div>
@@ -177,14 +177,14 @@ function App({ Component, pageProps }) {
           <div className="nav-modal-content">
             <a
               className="modal-link"
-              href="#"
+              href="/contact"
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeNav}
             >
               Contact Us
             </a>
-            <a className="modal-link" href="#" onClick={closeNav}>
+            <a className="modal-link" href="/about" onClick={closeNav}>
               About
             </a>
           </div>

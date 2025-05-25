@@ -5,6 +5,7 @@ import { db } from '/lib/firebasedb';
 import BookingForm from '/components/BookingForm';
 import Slider from "react-slick";
 import Head from 'next/head'; // Import Head for metadata
+import Footer from '/components/Footer';
 
 export default function SpaceDetails() {
   const router = useRouter();
@@ -142,4 +143,5 @@ export default function SpaceDetails() {
       <BookingForm listingId={id} />
     </div>
   );
+  <Footer />
 }
