@@ -21,7 +21,7 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     if (!navOpen && showModal) {
-      const timeout = setTimeout(() => setShowModal(false), 350); // match your CSS transition
+      const timeout = setTimeout(() => setShowModal(false), 350);
       return () => clearTimeout(timeout);
     }
   }, [navOpen, showModal]);
@@ -39,19 +39,41 @@ function App({ Component, pageProps }) {
       netlifyIdentity.init({
         APIUrl: "https://staging.nayburlee.co.za/.netlify/identity"
       });
-      netlifyIdentity.on("init", user => {
+
+      const handleInit = user => {
         setUser(user);
         if (!user) {
           netlifyIdentity.open("login");
         }
-      });
-      netlifyIdentity.on("login", user => {
+      };
+      const handleLogin = user => {
         setUser(user);
         netlifyIdentity.close();
-      });
-      netlifyIdentity.on("logout", () => setUser(null));
+      };
+      const handleLogout = () => setUser(null);
+
+      netlifyIdentity.on("init", handleInit);
+      netlifyIdentity.on("login", handleLogin);
+      netlifyIdentity.on("logout", handleLogout);
+
+      // Clean up listeners on unmount
+      return () => {
+        netlifyIdentity.off("init", handleInit);
+        netlifyIdentity.off("login", handleLogin);
+        netlifyIdentity.off("logout", handleLogout);
+      };
     }
   }, []);
+
+  // Fallback: open login modal if user is still null after mount
+  useEffect(() => {
+    if (
+      process.env.NEXT_PUBLIC_IS_STAGING === "true" &&
+      user === null
+    ) {
+      netlifyIdentity.open("login");
+    }
+  }, [user]);
 
   if (
     process.env.NEXT_PUBLIC_IS_STAGING === "true" &&
