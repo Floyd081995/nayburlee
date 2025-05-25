@@ -7,6 +7,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 export async function sendBookingActionEmail({
   landlordEmail,
   bookingId,
+  listingId,
   ownerName,
   listingName,
   location,
@@ -32,6 +33,7 @@ export async function sendBookingActionEmail({
       capacity,                // [Listing Capacity]
       features,                // [Listing Features]
       bookingId,               // [Booking ID]
+      listingId,              // [Listing ID]
       price,                // [Booking Price]
       listingType,              // [Listing Type]
       bookingType,            // [Booking Type]
