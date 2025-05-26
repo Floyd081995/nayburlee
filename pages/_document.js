@@ -24,7 +24,7 @@ class MyDocument extends Document {
 
           {/* Updated Open Graph Metadata */}
           <meta property="og:title" content="Nayburlee | Create. Collaborate. Grow." />
-          <meta property="og:description" content="Book verified podcast studios, content creation spaces, and hybrid workspaces in South Africa — by the hour or day. No leases, no hassle." />
+          <meta property="og:description" content="Book verified podcast studios, content creation spaces, voiceover studios and hybrid workspaces in South Africa — by the hour or day. No leases, no hassle." />
           <meta property="og:image" content="https://nayburlee.co.za/preview-image.jpeg" /> {/* Update image URL */}
           <meta property="og:url" content="https://nayburlee.co.za" />
           <meta property="og:type" content="website" />
@@ -32,12 +32,12 @@ class MyDocument extends Document {
           {/* Updated Twitter Card Metadata */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Nayburlee | Create. Collaborate. Grow." />
-          <meta name="twitter:description" content="Book verified podcast studios, content creation spaces, and hybrid workspaces in South Africa — by the hour or day. No leases, no hassle." />
+          <meta name="twitter:description" content="Book verified podcast studios, content creation spaces, voiceover studios and hybrid workspaces in South Africa — by the hour or day. No leases, no hassle." />
           <meta name="twitter:image" content="https://nayburlee.co.za/preview-image.jpeg" /> {/* Update image URL */}
 
           {/* SEO Metadata */}
-          <meta name="description" content="Nayburlee matches creators, podcasters, and startups with flexible, bookable verified spaces across South Africa, including studios, content creation rooms, and hybrid workspaces" />
-          <meta name="keywords" content="Nayburlee, creative spaces South Africa, hybrid workspaces, content creation rooms, flexible spaces, bookable studios, workspace solutions, podcast studios" />
+          <meta name="description" content="Nayburlee matches creators, podcasters, and startups with flexible, bookable verified spaces across South Africa, including studios, content creation rooms, voiceover studios and hybrid workspaces" />
+          <meta name="keywords" content="Nayburlee, creative spaces South Africa, hybrid workspaces, content creation rooms, voiceover studios, flexible spaces, bookable studios, workspace solutions, podcast studios" />
           <meta name="robots" content="index, follow" />
         </Head>
         <body>
