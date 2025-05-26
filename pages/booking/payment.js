@@ -22,7 +22,7 @@ export default function PaymentPage() {
   useEffect(() => {
     if (listingId && bookingId) {
       const fetchBooking = async () => {
-        const docRef = doc(db, "listings", listingId, "availability", bookingId);
+        const docRef = doc(db, "listings", listingId, "bookings", bookingId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           setBooking(docSnap.data());
