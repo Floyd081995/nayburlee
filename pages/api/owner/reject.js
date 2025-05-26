@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   try {
     // Update booking status to rejected
     await updateDoc(
-      doc(db, "listings", listingId, "availability", bookingId),
+      doc(db, "listings", listingId, "bookings", bookingId),
       { status: "rejected" }
     );
     res.status(200).send("Booking rejected.");
