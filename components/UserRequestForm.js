@@ -4,7 +4,7 @@ import { db } from "/lib/firebasedb";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { findMatchingListings } from "../lib/matchingLogic"; // ✅ Corrected import path
 import LocationInput from "../components/LocationInput"; // ✅ Import autocomplete
-
+import { DURATION_OPTIONS } from "../lib/bookingDurations";
 
 export default function UserRequestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,7 +19,9 @@ export default function UserRequestForm() {
     features: [],
     capacity:"",
   });
-  
+  const [allowedDurations, setAllowedDurations] = useState([]);
+  const [emailError, setEmailError] = useState(""); // State for email validation error
+
   
   const router = useRouter(); // Initialize Next.js router
 
@@ -32,6 +34,40 @@ export default function UserRequestForm() {
     e.preventDefault();
     if (isSubmitting) return;
     setIsSubmitting(true);
+
+    // Name validation
+    if (!formData.name || formData.name.trim() === "") {
+      alert("Please enter your name.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.contact)) {
+      setEmailError("Please enter a valid email address.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Location validation (move this up)
+    if (!formData.location || formData.location.trim() === "") {
+      alert("Please select a valid location.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Budget validation
+    if (
+      !formData.price ||
+      !formData.duration.length ||
+      !formData.price[formData.duration[0]] ||
+      isNaN(formData.price[formData.duration[0]])
+    ) {
+      alert("Please enter your ideal budget.");
+      setIsSubmitting(false);
+      return;
+    }
 
     // If capacity is empty, set it to "1"
     const finalCapacity = formData.capacity === "" ? "1" : formData.capacity;
@@ -92,6 +128,7 @@ export default function UserRequestForm() {
               location: userInput.location || "",
               name: formData.name, 
               email: formData.contact,
+              message: formData.requirements,
             }
           });
         } else {
@@ -125,7 +162,7 @@ export default function UserRequestForm() {
         <input
           type="text"
           name="name"
-          placeholder="Your Name & Surname"
+          placeholder="Your Name"
           required
           onChange={handleChange}
           style={{
@@ -140,20 +177,28 @@ export default function UserRequestForm() {
 
         {/* Contact Info */}
         <input
-          type="text"
+          type="email"
           name="contact"
           placeholder="Email Address"
           required
-          onChange={handleChange}
+          value={formData.contact}
+          onChange={(e) => {
+            setFormData({ ...formData, contact: e.target.value });
+            setEmailError(""); // Reset error on change
+          }}
           style={{
             marginBottom: "10px",
             padding: "8px",
             width: "80%",
-            border: "1px solid #ddd",
+            border: emailError ? "2px solid #e74c3c" : "1px solid #ddd",
             borderRadius: "5px",
             fontFamily: "jost",
+            backgroundColor: emailError ? "#ffeaea" : "white",
           }}
         />
+        {emailError && (
+          <div style={{ color: "#e74c3c", marginBottom: "10px" }}>{emailError}</div>
+        )}
 
         {/* Capacity Field */}
         <input
@@ -178,7 +223,12 @@ export default function UserRequestForm() {
         <select
           name="type"
           required
-          onChange={(e) => setFormData({ ...formData, type: [e.target.value] })} // Store as array
+          value={formData.type[0] || ""}
+          onChange={(e) => {
+            const selectedType = e.target.value;
+            setFormData({ ...formData, type: [selectedType], duration: [] }); // Reset duration
+            setAllowedDurations(DURATION_OPTIONS[selectedType] || []);
+          }}
           style={{
             marginBottom: "10px",
             padding: "8px",
@@ -190,9 +240,7 @@ export default function UserRequestForm() {
         >
           <option value="">Select Space Type</option>
           <option value="Podcast Studio">Podcast Studio</option>
-          <option value="Video/Content Creation Space">
-            Video/Content Creation Space
-          </option>
+          <option value="Video/Content Creation Space">Video/Content Creation Space</option>
           <option value="Voiceover Studio">Voiceover Studio</option>
           <option value="Hybrid Space">Hybrid Space</option>
         </select>
@@ -245,9 +293,9 @@ export default function UserRequestForm() {
         {/* Select Duration */}
         <select
           name="duration"
-          value={formData.duration}
+          value={formData.duration[0] || ""}
           required
-          onChange={(e) => setFormData({ ...formData, duration: [e.target.value] })} // Store as array
+          onChange={(e) => setFormData({ ...formData, duration: [e.target.value] })}
           style={{
             marginBottom: "10px",
             padding: "8px",
@@ -256,12 +304,12 @@ export default function UserRequestForm() {
             borderRadius: "5px",
             fontFamily: "jost",
           }}
+          disabled={allowedDurations.length === 0}
         >
           <option value="">Select Duration</option>
-          <option value="Hourly">Hourly</option>
-          <option value="Daily">Daily</option>
-          <option value="Weekly">Weekly</option>
-          <option value="Monthly">Monthly</option>
+          {allowedDurations.map((d) => (
+            <option key={d} value={d}>{d}</option>
+          ))}
         </select>
 
         {/* Ideal Budget */}
@@ -298,7 +346,7 @@ export default function UserRequestForm() {
         {/* Special Requirements */}
         <textarea
           name="requirements"
-          placeholder="Any Special Requirements?"
+          placeholder="Additional Message (Optional)"
           rows="4"
           onChange={handleChange}
           style={{

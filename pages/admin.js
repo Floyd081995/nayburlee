@@ -1036,7 +1036,8 @@ export default function Admin() {
             {validPrices.length > 0 && (
               <p><strong>Price:</strong> {validPrices.join(" | ")}</p> // ✅ Render only once
             )}
-
+            <p><strong>Opening Time:</strong> {listingDoc.openTime || "Not set"}</p>
+            <p><strong>Closing Time:</strong> {listingDoc.closeTime || "Not set"}</p>
             {listingDoc.isActive !== undefined && (
               <p><strong>Active Status:</strong> {listingDoc?.isActive ? "✅ Active" : "❌ Inactive"}</p>
             )}
@@ -1240,7 +1241,10 @@ export default function Admin() {
         <li key={booking.id} style={{ borderBottom: "2px solid #2FD1BA", marginBottom: 8, paddingBottom: 8 }}>
           <p><strong>Name:</strong> {booking.name}</p>
           <p><strong>Email:</strong> {booking.email}</p>
+          <p><strong>Cell:</strong> {booking.cell}</p>
           <p><strong>Booking Type:</strong> {booking.bookingType}</p>
+          <p><strong>Booking Start:</strong> {booking.bookingStart ? booking.bookingStart : "N/A"}</p>
+          <p><strong>Booking End:</strong> {booking.bookingEnd ? booking.bookingEnd : "N/A"}</p>
           <p><strong>Start:</strong> {booking.startDate}{booking.startTime ? `, ${booking.startTime}` : ""}</p>
           <p><strong>End:</strong> {booking.endDate}{booking.endTime ? `, ${booking.endTime}` : ""}</p>
           <p><strong>Price:</strong> {typeof booking.price === "number" && !isNaN(booking.price) ? `R${booking.price.toFixed(2)}` : "Not set"}</p>

@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { db } from "/lib/firebasedb";
-import { doc, getDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, collection, getDocs } from "firebase/firestore";
 import { useRouter } from 'next/router';
 import Footer from "/components/Footer";
+import { DURATION_OPTIONS } from "../lib/bookingDurations";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 
 export default function BookingForm({ listingId }) {
 const router = useRouter();
-const { name, email } = router.query;
+const { name, email, message } = router.query;
 
   const [form, setForm] = useState({
     name: name || "",
@@ -22,9 +25,10 @@ const { name, email } = router.query;
             ...prev,
             name: name || prev.name,
             email: email || prev.email,
+            message: message || prev.message,
           }));
         }
-      }, [name, email]);
+      }, [name, email, message]);
 
   const [bookingType, setBookingType] = useState("");
 
@@ -37,7 +41,11 @@ const { name, email } = router.query;
   const [openTime, setOpenTime] = useState("08:00");
   const [closeTime, setCloseTime] = useState("18:00");
 
+  const today = new Date().toISOString().split("T")[0];
+
   const [listing, setListing] = useState(null);
+  const [allowedDurations, setAllowedDurations] = useState([]);
+  const [bookings, setBookings] = useState([]);
 
   // ADD THIS useEffect block right after your useState hooks:
   useEffect(() => {
@@ -61,6 +69,26 @@ const { name, email } = router.query;
     fetchListing();
       }, [listingId]);
 
+  useEffect(() => {
+  if (listing && listing.type) {
+    // If type is an array, use the first value
+    const typeKey = Array.isArray(listing.type) ? listing.type[0] : listing.type;
+    setAllowedDurations(DURATION_OPTIONS[typeKey] || []);
+    setBookingType((DURATION_OPTIONS[typeKey] || [])[0] || "");
+  }
+}, [listing]);
+
+  // Fetch bookings for this listing
+useEffect(() => {
+  if (!listingId) return;
+  const fetchBookings = async () => {
+    const bookingsRef = collection(db, "listings", listingId, "bookings");
+    const snapshot = await getDocs(bookingsRef);
+    setBookings(snapshot.docs.map(doc => doc.data()));
+  };
+  fetchBookings();
+}, [listingId]);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -68,10 +96,67 @@ const { name, email } = router.query;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate cell number
-    if (!form.cell || form.cell.length < 7) {
+    // Name validation
+    if (!form.name || form.name.trim() === "") {
+      alert("Please enter your name.");
+      return;
+    }
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(form.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Cellphone validation (already present, but you can add numeric check)
+    if (!form.cell || form.cell.length < 7 || !/^\d+$/.test(form.cell)) {
       alert("Please enter a valid cellphone number.");
       return;
+    }
+
+    // Booking type validation
+    if (!bookingType) {
+      alert("Please select a booking type.");
+      return;
+    }
+
+    // Start date validation
+    if (!startDate) {
+      alert("Please select a start date.");
+      return;
+    }
+
+    // End date validation for non-hourly
+    if (bookingType !== "Hourly" && !endDate) {
+      alert("Please select an end date.");
+      return;
+    }
+
+    // End date after start date for non-hourly
+    if (
+      (bookingType === "Daily" || bookingType === "Weekly" || bookingType === "Monthly") &&
+      startDate && endDate &&
+      new Date(endDate) < new Date(startDate)
+    ) {
+      alert("End date must be after start date.");
+      return;
+    }
+
+    // Start and end time validation for hourly
+    if (bookingType === "Hourly") {
+      if (!startTime) {
+        alert("Please select a start time.");
+        return;
+      }
+      if (!endTime) {
+        alert("Please select an end time.");
+        return;
+      }
+      if (endTime <= startTime) {
+        alert("End time must be after start time.");
+        return;
+      }
     }
 
     try {
@@ -125,6 +210,16 @@ const { name, email } = router.query;
       timestamp: serverTimestamp(),
     };
 
+// Calculate booking start and end times based on booking type
+      let bookingStart = null, bookingEnd = null;
+if (bookingType === "Hourly" && startDate && startTime && endTime) {
+  bookingData.bookingStart = `${startDate}T${startTime}`;
+  bookingData.bookingEnd = `${startDate}T${endTime}`;
+} else if (startDate && endDate) {
+  bookingData.bookingStart = `${startDate}T00:00`;
+  bookingData.bookingEnd = `${endDate}T23:59`;
+}
+
       console.log("Booking data to save:", bookingData);
 
       const response = await fetch("/api/bookings/create", {
@@ -132,6 +227,11 @@ const { name, email } = router.query;
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bookingData),
     });
+
+    if (response.status === 409) {
+      alert("Sorry, this time slot is already booked. Please choose another.");
+      return;
+    }
 
     const data = await response.json();
     console.log("API response:", data, "Status:", response.status);
@@ -176,9 +276,19 @@ const { name, email } = router.query;
 
 const timeOptions = generateTimeOptions(openTime, closeTime);
 
-const filteredEndTimeOptions = timeOptions.filter(
-  (t) => !startTime || t > startTime
-);
+const filteredStartTimeOptions = timeOptions.filter((startT, idx) => {
+  if (!startDate) return true;
+  // Only allow this start time if there is at least one valid end time that doesn't overlap
+  return timeOptions.slice(idx + 1).some((endT) => {
+    return !isTimeSlotBooked(startDate, startT, endT);
+  });
+});
+
+const filteredEndTimeOptions = timeOptions.filter((t) => {
+  if (!startDate || !startTime || t <= startTime) return false;
+  // Only allow this end time if the whole range does NOT overlap with any booking
+  return !isTimeSlotBooked(startDate, startTime, t);
+});
 
   if (!listing) {
   return <p>Loading...</p>;
@@ -275,7 +385,7 @@ console.log("listing.price_Weekly:", listing.price_Weekly);
 console.log("listing.price_Monthly:", listing.price_Monthly);
 console.log("listing.includedHours:", listing.includedHours);
 
-// Display price per duration and included hours //
+// Display price per duration //
 let pricePerDuration = "";
 let includedHoursText = "";
 
@@ -391,10 +501,8 @@ if (listing) {
         <select
           name="bookingType"
           value={bookingType}
-          onChange={(e) => {
-            console.log("Dropdown changed to:", e.target.value);
-            setBookingType(e.target.value);
-          }}
+          onChange={(e) => setBookingType(e.target.value)}
+          required
           style={{
             marginBottom: "10px",
             padding: "10px",
@@ -405,97 +513,101 @@ if (listing) {
             fontSize: "14px",
           }}
         >
-          {listing.duration.map((type) => (
+          {allowedDurations.map((type) => (
             <option key={type} value={type}>
               {type} Booking
             </option>
           ))}
         </select>
 
-        {/* Start Date */}
-        <input
-          type="date"
-          name="startDate"
-          value={startDate}
-          required
-          onChange={(e) => setStartDate(e.target.value)}
-          style={{
-            marginBottom: "10px",
-            padding: "10px",
-            width: "80%",
-            border: "1px solid #ddd",
-            borderRadius: "5px",
-            outline: "none",
-            fontSize: "14px",
-          }}
-        />
-
-        {/* End Date - for Daily, Weekly, and Monthly Booking */}
-        {bookingType !== "Hourly" && (
-          <input
-            type="date"
-            name="endDate"
-            value={endDate}
-            required
-            onChange={(e) => setEndDate(e.target.value)}
-            style={{
-              marginBottom: "10px",
-              padding: "10px",
-              width: "80%",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-              outline: "none",
-              fontSize: "14px",
+        {/* Calendar for picking dates - Start Date  and End Date */}
+        <div style={{ width: 280, margin: "0 auto", marginBottom: 24 }}>
+          <Calendar
+            minDate={new Date()}
+            tileDisabled={({ date, view }) =>
+              view === 'month' && (
+                (bookingType === "Hourly" && isDateFullyBooked(date)) ||
+                (bookingType !== "Hourly" && isDateBooked(date))
+              )
+            }
+            onChange={date => {
+              if (bookingType.toLowerCase() !== "hourly" && Array.isArray(date)) {
+                setStartDate(formatDateYYYYMMDD(date[0]));
+                setEndDate(formatDateYYYYMMDD(date[1]));
+              } else if (date) {
+                setStartDate(formatDateYYYYMMDD(date));
+                setEndDate(""); // Clear endDate for single-day
+              }
             }}
+            selectRange={bookingType.toLowerCase() !== "hourly"}
+            value={
+              bookingType.toLowerCase() !== "hourly" && startDate && endDate
+                ? [new Date(startDate), new Date(endDate)]
+                : startDate
+                ? new Date(startDate)
+                : null
+            }
           />
-        )}
+        </div>
 
         {/* Time Fields - only for Hourly Booking */}
         {bookingType === "Hourly" && (
           <>
-           <select
-            name="startTime"
-            value={startTime}
-            required
-            onChange={(e) => setStartTime(e.target.value)}
-            style={{
-              marginBottom: "10px",
-              padding: "10px",
-              width: "80%",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-              outline: "none",
-              fontSize: "14px",
-            }}
-          >
-            <option value="">Select Start Time</option>
-            {timeOptions.map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
-          </select>
-          
-          <select
-            name="endTime"
-            value={endTime}
-            required
-            onChange={(e) => setEndTime(e.target.value)}
-            style={{
-              marginBottom: "10px",
-              padding: "10px",
-              width: "80%",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-              outline: "none",
-              fontSize: "14px",
-            }}
-          >
-            <option value="">Select End Time</option>
-            {filteredEndTimeOptions.map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
-          </select> 
-            </>
-          )}
+            <select
+              name="startTime"
+              value={startTime}
+              required
+              onChange={(e) => setStartTime(e.target.value)}
+              disabled={!startDate}
+              style={{
+                marginBottom: "10px",
+                padding: "10px",
+                width: "80%",
+                border: "1px solid #ddd",
+                borderRadius: "5px",
+                outline: "none",
+                fontSize: "14px",
+                backgroundColor: !startDate ? "#f0f0f0" : "white",
+                color: !startDate || !startTime ? "#2FD1BA" : "#2FD1BA", // <-- key line
+              }}
+            >
+              <option value="" disabled hidden>
+                {startDate ? "Select Start Time" : "Please select a date first"}
+              </option>
+              {startDate &&
+                filteredStartTimeOptions.map((t) => (
+                  <option key={t} value={t}>{t}</option>
+                ))}
+            </select>
+
+            <select
+              name="endTime"
+              value={endTime}
+              required
+              onChange={(e) => setEndTime(e.target.value)}
+              disabled={!startDate}
+              style={{
+                marginBottom: "10px",
+                padding: "10px",
+                width: "80%",
+                border: "1px solid #ddd",
+                borderRadius: "5px",
+                outline: "none",
+                fontSize: "14px",
+                backgroundColor: !startDate ? "#f0f0f0" : "white",
+                color: !startDate ? "#2FD1BA" : "#2FD1BA", // <-- key line
+              }}
+            >
+              <option value="">
+                {startDate ? "Select End Time" : "Please select a date first"}
+              </option>
+              {startDate &&
+                filteredEndTimeOptions.map((t) => (
+                  <option key={t} value={t}>{t}</option>
+                ))}
+            </select>
+          </>
+        )}
 
         {/* Optional Message */}
         <textarea
@@ -512,6 +624,7 @@ if (listing) {
             borderRadius: "5px",
             outline: "none",
             fontSize: "14px",
+            fontFamily: "jost, trebuchet ms",
           }}
         ></textarea>
 
@@ -532,6 +645,12 @@ if (listing) {
         {includedHoursText && (
           <p style={{ color: "#888", margin: "10px 0" }}>
             {includedHoursText}
+          </p>
+        )}
+
+        {bookingType === "Hourly" && startDate && filteredStartTimeOptions.length === 0 && (
+          <p style={{ color: "red" }}>
+            No available time slots for this day. Please choose another date.
           </p>
         )}
 
@@ -557,4 +676,66 @@ if (listing) {
         <Footer />  
     </div>
   );
+
+  function isDateBooked(date) {
+    const dateStr = formatDateYYYYMMDD(date);
+
+    // Block if any daily/weekly/monthly booking overlaps this date
+    const isBlockedByRange = bookings.some(b => {
+      if (!b.bookingStart || !b.bookingEnd) return false;
+      if (b.bookingType === "hourly" || b.bookingType === "Hourly") return false;
+      const start = new Date(b.bookingStart);
+      const end = new Date(b.bookingEnd);
+      return date >= start && date <= end;
+    });
+
+    // Block if there are any hourly bookings for this day
+    const isBlockedByHourly = bookings.some(b => {
+      if (b.bookingType !== "hourly" && b.bookingType !== "Hourly") return false;
+      if (!b.bookingStart) return false;
+      const bookingDateStr = b.bookingStart.split("T")[0];
+      return bookingDateStr === dateStr;
+    });
+
+    return isBlockedByRange || isBlockedByHourly;
+  }
+
+  function isTimeSlotBooked(dateStr, startT, endT) {
+  return bookings.some(b => {
+    if (
+      (b.bookingType !== "hourly" && b.bookingType !== "Hourly") ||
+      !b.bookingStart ||
+      !b.bookingEnd
+    ) return false;
+
+    const bookingDateStr = b.bookingStart.split("T")[0];
+    if (bookingDateStr !== dateStr) return false;
+
+    const bookedStart = b.bookingStart.substring(11,16); // "HH:MM"
+    const bookedEnd = b.bookingEnd.substring(11,16);
+
+    // Debug log
+    console.log({startT, endT, bookedStart, bookedEnd, overlap: (startT < bookedEnd && endT > bookedStart)});
+
+    return (
+      (startT < bookedEnd && endT > bookedStart)
+    );
+  });
+}
+
+  function formatDateYYYYMMDD(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function isDateFullyBooked(date) {
+    if (bookingType !== "Hourly") return false;
+    const dateStr = formatDateYYYYMMDD(date);
+    // If there are NO available start/end time pairs, the day is fully booked
+    return !timeOptions.some((startT, idx) =>
+      timeOptions.slice(idx + 1).some((endT) => !isTimeSlotBooked(dateStr, startT, endT))
+    );
+  }
 }
