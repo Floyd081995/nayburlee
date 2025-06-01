@@ -123,13 +123,15 @@ export default function Admin() {
         }
   
       if (Object.keys(newEntry).length > 0) {
+        // Remove password and email fields before saving a listing
+        const { password, email, ...safeEntry } = newEntry;
+        
         const docRef = await addDoc(collection(db, selectedCollection), {
-          ...newEntry,
+          ...safeEntry,
           name: newEntry.name, // Ensure name is saved
           location: newEntry.location,
           ownerName: newEntry.ownerName,
           ownercontactInfo: newEntry.ownercontactInfo,
-
         });
   
         const docIdSnippet = docRef.id.slice(0, 6); // Use first 6 characters
@@ -195,7 +197,20 @@ export default function Admin() {
         updateData.location = updatedEntry.location || "Unknown";
         updateData.location_keywords = generateLocationKeywords(updateData.location);
 
-  
+        // --- Regenerate title and slug using all types ---
+        const typeForTitle = Array.isArray(updateData.type) && updateData.type.length > 0
+          ? updateData.type.join(", ")
+          : updateData.type || "Unknown";
+        const typeForSlug = Array.isArray(updateData.type) && updateData.type.length > 0
+          ? updateData.type.map(t => t.toLowerCase().replace(/ /g, "-")).join("-")
+          : (updateData.type || "unknown").toLowerCase().replace(/ /g, "-");
+        const locationForTitle = updateData.location || "Unknown";
+        const locationForSlug = locationForTitle.toLowerCase().replace(/ /g, "-");
+        const docIdSnippet = id.slice(0, 6);
+
+        updateData.title = `${typeForTitle} | ${locationForTitle} | ${docIdSnippet}`;
+        updateData.slug = `${typeForSlug}-${locationForSlug}-${docIdSnippet}`;
+
         // ✅ **Fix: Ensure these fields update properly**
         updateData.duration = updatedEntry.duration || [];
         updateData.description = updatedEntry.description || "No description provided";
@@ -1258,8 +1273,10 @@ export default function Admin() {
                 <button
                   style={{ background: "#2FD1BA", color: "#fff", border: "none", borderRadius: 4, padding: "4px 10px" }}
                   onClick={async () => {
-                    const docRef = doc(db, "listings", booking.parentListingId, "bookings", booking.id);
-                    await updateDoc(docRef, { status: "awaiting_payment" });
+                    // Call your API endpoint to approve and send payment link email
+                    await fetch(`/api/owner/approve?listingId=${booking.parentListingId}&bookingId=${booking.id}`, {
+                      method: "POST"
+                    });
                     handleViewBookings(booking.parentListingId);
                   }}
                 >

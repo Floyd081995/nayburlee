@@ -60,7 +60,9 @@ export async function sendBookingActionEmail({
       bookingId,
       listingId,
       price,
-      listingType,
+      listingType: Array.isArray(listingType)
+        ? listingType.join(", ")
+        : listingType || "Not specified",
       bookingType,
       message,
       bookingDateTimeLocal, // Formatted for display in template
@@ -69,6 +71,34 @@ export async function sendBookingActionEmail({
   };
 
   console.log("EMAIL DATA:", msg.dynamic_template_data);
+
+  await sgMail.send(msg);
+}
+
+export async function sendPaymentLinkEmail({
+  userEmail,
+  userName,
+  paymentLink,
+  bookingId,
+  listingName,
+  price,
+  templateId, // Your payment link SendGrid template ID
+  ...dynamicData
+}) {
+  const msg = {
+    to: userEmail,
+    from: 'match@nayburlee.co.za',
+    subject: 'Nayburlee - Complete Your Booking Payment',
+    templateId: templateId, // Pass your payment link template ID here
+    dynamic_template_data: {
+      userName,
+      paymentLink,
+      bookingId,
+      listingName,
+      price,
+      ...dynamicData
+    }
+  };
 
   await sgMail.send(msg);
 }

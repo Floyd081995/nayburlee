@@ -114,7 +114,10 @@ export default function SpaceDetails() {
       
       {/* Type */}
       <p style={{ borderRadius: "10px", textAlign: "center" }} className="text-sm text-gray-600 mb-1">
-        <strong>Type:</strong> {space.type || 'Not specified'}
+        <strong>Type:</strong>{" "}
+        {Array.isArray(space.type)
+          ? space.type.join(", ")
+          : space.type || "Not specified"}
       </p>
 
       {/* Features */}
