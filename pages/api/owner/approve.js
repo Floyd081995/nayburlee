@@ -3,6 +3,7 @@ import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { sendPaymentLinkEmail } from "/utils/sendBookingActionEmail";
 
 export default async function handler(req, res) {
+  console.log("API /api/owner/approve called", req.method, req.query);
   // Allow both GET and POST for approval
   if (req.method !== "POST" && req.method !== "GET") {
     return res.status(405).send("Method Not Allowed");

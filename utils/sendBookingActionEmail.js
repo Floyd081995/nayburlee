@@ -89,7 +89,7 @@ export async function sendPaymentLinkEmail({
     to: userEmail,
     from: 'match@nayburlee.co.za',
     subject: 'Nayburlee - Complete Your Booking Payment',
-    templateId: templateId, // Pass your payment link template ID here
+    templateId: templateId,
     dynamic_template_data: {
       userName,
       paymentLink,
@@ -100,5 +100,13 @@ export async function sendPaymentLinkEmail({
     }
   };
 
-  await sgMail.send(msg);
+  console.log("sendPaymentLinkEmail: About to send with msg:", msg);
+
+  try {
+    await sgMail.send(msg);
+    console.log("sendPaymentLinkEmail: sgMail.send finished");
+  } catch (err) {
+    console.error("sendPaymentLinkEmail: sgMail.send ERROR:", err);
+    throw err;
+  }
 }
