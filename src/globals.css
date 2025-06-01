@@ -476,3 +476,9 @@ html, body {
   }
 }
 
+/* Make react-calendar weekday (day letters) visible */
+.react-calendar__month-view__weekdays__weekday abbr {
+  color: #2FD1BA !important; /* or any color you prefer */
+  font-weight: bold;
+}
+

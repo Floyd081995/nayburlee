@@ -160,7 +160,7 @@ useEffect(() => {
               style={{ scrollbarColor: "light gray", scrollbarWidth: "thin" }}
             >
               {filteredSortedListings.map((listing, index) => (
-                <div key={listing.id} className="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+                <div key={listing.id} className="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 mobile-card">
                   {/* Listing Title */}
                   <h2 style={{ color: "#2FD1BA", textAlign: "center", marginTop: "50px", marginBottom: "5px", padding: "5px 15px"}} className="text-lg font-bold text-gray-800">
                     {listing.title || "Untitled"}
@@ -302,6 +302,16 @@ useEffect(() => {
           )}
         </div>
       </div>
+      <style>
+        {`
+          @media (max-width: 640px) {
+            .mobile-card {
+              padding-left: 16px !important;
+              padding-right: 16px !important;
+            }
+          }
+        `}
+      </style>
       <Footer />
     </div>
   );

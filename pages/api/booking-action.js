@@ -1,5 +1,6 @@
 import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
 import { initializeApp, getApps } from "firebase/app";
+import { sendPaymentLinkEmail } from "/utils/sendBookingActionEmail";
 
 // Your Firebase config
 const firebaseConfig = {
@@ -43,6 +44,26 @@ export default async function handler(req, res) {
     let newStatus;
     if (action === "approve") {
       newStatus = "awaiting_payment";
+      await updateDoc(bookingRef, { status: newStatus });
+
+      // Fetch booking and listing data
+      const booking = { id: bookingId, ...bookingSnap.data() };
+      const listingSnap = await getDoc(doc(db, "listings", listingId));
+      const listing = listingSnap.data();
+
+      // Generate payment link
+      const paymentLink = generatePaymentLink(booking, listing);
+
+      // Send payment link email
+      await sendPaymentLinkEmail({
+        userEmail: booking.email,
+        userName: booking.name,
+        paymentLink,
+        bookingId: booking.id,
+        listingName: listing.name,
+        price: booking.price,
+        templateId: "d-7afd2711f21d4e6bb1859d5f59eadb16",
+      });
     } else if (action === "reject") {
       newStatus = "rejected";
     } else {

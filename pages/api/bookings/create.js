@@ -1,6 +1,7 @@
 import { db } from "/lib/firebasedb";
-import { doc, getDoc, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, collection, addDoc, serverTimestamp, query, where, getDocs } from "firebase/firestore";
 import { sendBookingActionEmail } from "../../../utils/sendBookingActionEmail";
+import { formatToLocalDateTime } from "../../../utils/dateHelpers";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
@@ -26,13 +27,13 @@ export default async function handler(req, res) {
     const listing = listingSnap.data();
     console.log("Listing data:", listing);
 
-    const landlordEmail = listing.ownercontactInfo; // <-- Add this here
+    const landlordEmail = listing.ownercontactInfo;
 
     const type = listing.type || "";
     const location = listing.location || "";
     const capacity = listing.capacity || "";
     const Features = listing.features || "";
-
+    
     // Calculate price
     let price = 0;
     if (bookingType === "hourly") {
@@ -80,7 +81,37 @@ export default async function handler(req, res) {
     // Add this log here:
     console.log("Calculated price:", price);
 
-    // Save booking
+    // Calculate bookingStart and bookingEnd
+    let bookingStart = null, bookingEnd = null;
+    if (bookingType === "hourly" && startDate && startTime && endTime) {
+      bookingStart = `${startDate}T${startTime}`; // plain string, no Date
+      bookingEnd = `${startDate}T${endTime}`;
+    } else if (
+      (bookingType === "daily" || bookingType === "weekly" || bookingType === "monthly") &&
+      startDate && endDate
+    ) {
+      bookingStart = `${startDate}T00:00`;
+      bookingEnd = `${endDate}T23:59`;
+    }
+
+    // Prevent double-booking
+    if (bookingStart && bookingEnd) {
+      const bookingsRef = collection(db, "listings", listingId, "bookings");
+      const overlapQuery = query(
+        bookingsRef,
+        bookingsRef,
+        where("bookingEnd", ">", bookingStart),
+        where("bookingStart", "<", bookingEnd)
+      );
+      const overlapSnapshot = await getDocs(overlapQuery);
+
+      if (!overlapSnapshot.empty) {
+        console.log("Double booking detected");
+        return res.status(409).json({ error: "This time slot is already booked. Please choose another." });
+      }
+    }
+
+    // Save booking 
     const bookingRef = await addDoc(collection(db, "listings", listingId, "bookings"), {
       name,
       email,
@@ -95,8 +126,24 @@ export default async function handler(req, res) {
       type,
       status: "pending_owner",
       timestamp: serverTimestamp(),
+      bookingStart: bookingStart || null,
+      bookingEnd: bookingEnd || null,
     });
     console.log("Booking saved with ID:", bookingRef.id);
+
+    // Format for display: "28 May 2025, 08:00–10:00 (SAST)"
+    let bookingDateTimeLocal = "";
+    if (bookingType === "hourly" && bookingStart && bookingEnd) {
+      const start = formatToLocalDateTime(bookingStart); // "28 May 2025 at 10:00"
+      const [, endTime] = bookingEnd.split("T");         // "11:30"
+      bookingDateTimeLocal = `${start} - ${endTime}`;
+    } else if (bookingType !== "hourly" && startDate && endDate) {
+      const startObj = new Date(`${startDate}T00:00`);
+      const endObj = new Date(`${endDate}T00:00`);
+      const startStr = startObj.toLocaleDateString("en-ZA", { day: "2-digit", month: "short", year: "numeric", timeZone: "Africa/Johannesburg" });
+      const endStr = endObj.toLocaleDateString("en-ZA", { day: "2-digit", month: "short", year: "numeric", timeZone: "Africa/Johannesburg" });
+      bookingDateTimeLocal = `${startStr} – ${endStr}`;
+    }
 
     // Send email
     await sendBookingActionEmail({
@@ -108,13 +155,19 @@ export default async function handler(req, res) {
       location: listing.location,
       capacity: listing.capacity,
       features: Array.isArray(listing.features) ? listing.features.join(", ") : listing.features,
-      bookingDateTime: `${startDate}${startTime ? " " + startTime : ""} - ${endDate}${endTime ? " " + endTime : ""}`,
+      bookingStart: bookingStart || null,
+      bookingEnd: bookingEnd || null,
+      startDate,
+      endDate,
+      startTime,
+      endTime,
       price,
       bookingType,
       name,
       message,
       listingType: type, 
-      templateId: 'd-7ade5d01048d4fe9aceedde2322e91a0'
+      templateId: 'd-7ade5d01048d4fe9aceedde2322e91a0',
+      bookingDateTimeLocal,
     });
     console.log("Booking action email sent");
 
