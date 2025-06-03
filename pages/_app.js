@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import netlifyIdentity from "netlify-identity-widget";
+import CookieBanner from "../components/CookieBanner";
 
 function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false);
@@ -149,11 +150,11 @@ function App({ Component, pageProps }) {
             <div className={`button-container${navOpen ? " open" : ""}`}>
               <a
                 className="contact-button"
-                href="/contact"
+                href="/support_contact"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Contact Us
+                Support Center / FAQs
               </a>
               <a className="about-us-button" href="/about" onClick={closeNav}>
                 About
@@ -177,12 +178,12 @@ function App({ Component, pageProps }) {
           <div className="nav-modal-content">
             <a
               className="modal-link"
-              href="/contact"
+              href="/support_contact"
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeNav}
             >
-              Contact Us
+              Support Center / FAQs
             </a>
             <a className="modal-link" href="/about" onClick={closeNav}>
               About
@@ -201,6 +202,7 @@ function App({ Component, pageProps }) {
 
       {/* Page Content */}
       <Component {...pageProps} />
+      <CookieBanner />
     </>
   );
 }

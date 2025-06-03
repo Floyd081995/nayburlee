@@ -5,6 +5,8 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { findMatchingListings } from "../lib/matchingLogic"; // ✅ Corrected import path
 import LocationInput from "../components/LocationInput"; // ✅ Import autocomplete
 import { DURATION_OPTIONS } from "../lib/bookingDurations";
+import Footer from "../components/Footer";
+
 
 export default function UserRequestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,6 +23,7 @@ export default function UserRequestForm() {
   });
   const [allowedDurations, setAllowedDurations] = useState([]);
   const [emailError, setEmailError] = useState(""); // State for email validation error
+  const [policyChecked, setPolicyChecked] = useState(false); // Add this line
 
   
   const router = useRouter(); // Initialize Next.js router
@@ -359,6 +362,24 @@ export default function UserRequestForm() {
           }}
         ></textarea>
 
+        {/* Policy Agreement */}
+        <div style={{ margin: "16px 0", textAlign: "center", width: "80%", marginLeft: "10%" }}>
+          <label>
+            <input
+              type="checkbox"
+              required
+              style={{ marginRight: "8px" }}
+              checked={policyChecked}
+              onChange={e => setPolicyChecked(e.target.checked)}
+            />
+            I agree to the{" "}
+            <a href="/termsandconditions" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}>Terms & Conditions</a>,{" "}
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}>Privacy Policy</a>,{" "}
+            <a href="/cookiePolicy" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}>Cookie Policy</a>, and{" "}
+            <a href="/cancellationPolicy" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}>Refund & Cancellation Policy</a>.
+          </label>
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
@@ -368,33 +389,31 @@ export default function UserRequestForm() {
               width: "40%",
               transition: "background-color 0.3s ease", // Smooth hover effect
               marginBottom: "30px",
-          
+              backgroundColor: policyChecked ? "#2FD1BA" : "#b2dfd6",
+              cursor: policyChecked ? "pointer" : "not-allowed",
           }}
-          onMouseEnter={(e) => (e.target.style.backgroundColor = "#28bfa5")}
-          onMouseLeave={(e) => (e.target.style.backgroundColor = "#2FD1BA")}
-
-          onClick={(e) => {
-            e.preventDefault(); // Prevent accidental double execution
+          disabled={!policyChecked || isSubmitting}
+          onMouseEnter={e => {
+            if (policyChecked) e.target.style.backgroundColor = "#28bfa5";
+          }}
+          onMouseLeave={e => {
+            if (policyChecked) e.target.style.backgroundColor = "#2FD1BA";
+          }}
+          onClick={e => {
+            if (!policyChecked) {
+              e.preventDefault();
+              return;
+            }
+            e.preventDefault();
             document.querySelector("form").dispatchEvent(new Event("submit", { bubbles: true }));
           }}
-
         >
           Match
         </button>
       </form>
       
       {/* Footer */}
-      <footer
-        style={{
-          textAlign: "center",
-          margintop: "40px",
-          fontSize: "14px",
-          color: "#2FD1BA",
-        }}
-      >
-        © {new Date().getFullYear()} Nayburlee Incorporated. <br /> All rights
-        reserved.
-      </footer>
+      <Footer />
     </div>
   );
 }

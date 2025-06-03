@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Footer from "../components/Footer";
 
 export default function About() {
   return (
@@ -23,14 +24,9 @@ export default function About() {
           Nayburlee is South Africa’s leading platform for discovering and booking flexible creative workspaces—from studios to hybrid offices. We connect creators, podcasters, and startups with fully equipped spaces that match their vibe and workflow—no leases, no hassle, just seamless access.
         </p>
         <hr style={{ margin: "32px 0" }} />
-        <h2 style={{ color: "#2fd1ba", marginBottom: "16px" }}>
-          Frequently Asked Questions
-        </h2>
-        <p>
-          Welcome to the Nayburlee FAQ page – your go-to guide for exploring creative and hybrid spaces on demand! We’ve gathered some of the most common questions below. If you need more details, our team is always here to help power your next project.
-        </p>
+  
         <div style={{ marginTop: "32px" }}>
-          <h3 style={{ color: "#2fd1ba" }}>What is Nayburlee all about?</h3>
+          <h3 style={{ color: "#2fd1ba" }}>What is Nayburlee?</h3>
           <p>
             We’re revolutionising the way you discover and book dynamic spaces—from podcast studios and content creation rooms to voiceover studios and hybrid workspaces—tailored to fuel your creative journey.
           </p>
@@ -40,11 +36,11 @@ export default function About() {
           </p>
           <h3 style={{ color: "#2fd1ba" }}>How does Nayburlee work?</h3>
           <p>
-            Browse our curated listings, find the perfect space for your project, and book with ease through our straightforward, all-in-one platform.
+            Explore our curated listings of creative and professional spaces—from innovatively designed podcast and voiceover studios, hybrid workspaces to fully equipped video / content creation rooms. With a few easy clicks, discover the perfect space for your project and secure your booking through our seamless, all‑in‑one platform.
           </p>
           <h3 style={{ color: "#2fd1ba" }}>How can Nayburlee help you?</h3>
           <p>
-            We take the hassle out of finding the right space and offer robust support—from booking to on-site visits—so you can focus on bringing your vision to life.
+            At Nayburlee, we remove the hassle from finding and booking the right space. Enjoy a fully supported experience—from detailed listings and flexible booking options—so you can focus on bringing your vision to life without distraction.
           </p>
           <h3 style={{ color: "#2fd1ba" }}>What are the service costs?</h3>
           <p>
@@ -78,28 +74,7 @@ export default function About() {
           Thank you for choosing Nayburlee. We’re excited to be part of your journey!
         </h3>
       </div>
-      <footer
-                style={{
-                textAlign: "center",
-                marginTop: "40px",
-                padding: "20px",
-                fontSize: "14px",
-                color: "#2FD1BA",
-                }}
-            >
-                <p>© {new Date().getFullYear()} Nayburlee Incorporated. All rights reserved.</p>
-                <div style={{ marginTop: "10px" }}>
-                <a href="#" style={{ marginRight: "10px", color: "#2FD1BA" }}>
-                    About
-                </a>
-                <a href="#" style={{ marginRight: "10px", color: "#2FD1BA" }}>
-                    Contact Us
-                </a>
-                <a href="/privacy" style={{ color: "#2FD1BA" }}>
-                    Privacy Policy
-                </a>
-                </div>
-        </footer>
+      <Footer />  
     </>
   );
 }
