@@ -654,6 +654,16 @@ if (listing) {
           </p>
         )}
 
+        <p style={{ color: "#888", fontSize: "14px", margin: "16px 0", textAlign: "left", width: "80%", marginLeft: "10%" }}>
+          By submitting this booking, you confirm your agreement to our
+          <a href="/termsandconditions" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}> Terms & Conditions</a>,{" "}
+          <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}>Privacy Policy</a>,{" "}
+          <a href="/cookiePolicy" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}>Cookie Policy</a>, and{" "}
+          <a href="/cancellationPolicy" target="_blank" rel="noopener noreferrer" style={{ color: "#2fd1ba", textDecoration: "underline" }}>Refund & Cancellation Policy</a>
+          {" "}as previously accepted.
+        </p>
+
+
         {/* Submit Button */}
         <button
           type="submit"
