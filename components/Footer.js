@@ -2,62 +2,89 @@ export default function Footer() {
   return (
     <footer
       style={{
-        textAlign: "center",
-        marginTop: "40px",
-        padding: "20px",
-        fontSize: "14px",
+        background: "#222",
         color: "#2FD1BA",
+        fontSize: "13px",
+        marginTop: "20px",
+        padding: "24px 0 0 0",
       }}
     >
-      <p>© {new Date().getFullYear()} Nayburlee Incorporated. All rights reserved.</p>
-      <div style={{ 
-          marginTop: "10px",
+      <div
+        style={{
+          maxWidth: "1000px",
+          margin: "0 auto",
+          padding: "0 16px",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          gap: "1px 10px", // vertical and horizontal gap
-          maxWidth: "700px", // adjust as needed for your layout
-          marginLeft: "auto",
-          marginRight: "auto",
-      }}>
-
-        <a href="/about" style={{color: "#2FD1BA" }}>
+          alignItems: "center",
+          gap: "0 8px",
+          lineHeight: "1.8",
+        }}
+      >
+        <a href="/about" style={footerLink}>
           About
         </a>
-
-        <a href="/support_contact" style={{ color: "#2FD1BA" }}>
+        <span style={dotStyle}>·</span>
+        <a href="/support_contact" style={footerLink}>
           Support Center / FAQs
         </a>
-
-        <a href="/termsandconditions" style={{ color: "#2FD1BA" }}>
-          Terms & Conditions
-        </a>
-
-        <a href="/privacy" style={{ color: "#2FD1BA" }}>
-          Privacy Policy
-        </a>
-
-        <a href="/cookiePolicy" style={{ color: "#2FD1BA" }}>
+        <span style={dotStyle}>·</span>
+        <a href="/cookiePolicy" style={footerLink}>
           Cookie Policy
         </a>
-
-        <a href="/cancellationPolicy" style={{ color: "#2FD1BA" }}>
+        <span style={dotStyle}>·</span>
+        <a href="/cancellationPolicy" style={footerLink}>
           Refund & Cancellation Policy
         </a>
-
-        <a href="/acceptableUse" style={{ color: "#2FD1BA" }}>
+        <span style={dotStyle}>·</span>
+        <a href="/acceptableUse" style={footerLink}>
           Acceptable Use Policy
         </a>
-
-        <a href="/safety" style={{ color: "#2FD1BA" }}>
+        <span style={dotStyle}>·</span>
+        <a href="/safety" style={footerLink}>
           Safety & Community Guidelines
         </a>
-
-        <a href="/hostTerms" style={{ color: "#2FD1BA" }}>
+        <span style={dotStyle}>·</span>
+        <a href="/hostTerms" style={footerLink}>
           Host Terms of Service
-        </a>  
-
+        </a>
+      </div>
+      {/* Centered copyright and legal links */}
+      <div
+        style={{
+          marginTop: "4px",           // Reduced gap
+          padding: "4px 16px",        // Reduced padding
+          textAlign: "center",
+          fontSize: "12px",
+          maxWidth: "500px",
+          margin: "4px auto 0 auto",  // Reduced top margin
+        }}
+      >
+        © {new Date().getFullYear()} Nayburlee Incorporated.
+        <span style={{ marginLeft: "12px" }}>
+          <a href="/termsandconditions" style={footerLink}>
+            Terms & Conditions
+          </a>
+          <span style={dotStyle}>·</span>
+          <a href="/privacy" style={footerLink}>
+            Privacy Policy
+          </a>
+        </span>
       </div>
     </footer>
   );
 }
+
+const footerLink = {
+  color: "#2FD1BA",
+  textDecoration: "none",
+  fontSize: "13px",
+  margin: "0 2px",
+  whiteSpace: "nowrap",
+};
+
+const dotStyle = {
+  color: "#2FD1BA",
+  margin: "0 4px",
+};

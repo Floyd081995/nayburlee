@@ -49,7 +49,10 @@ export default function Home() {
         position: "relative",
         width: "100%",
         margin: "0",
-        padding: "50px",
+        paddingTop: "130px", // or your header's true height
+        paddingLeft: "16px",
+        paddingRight: "16px",
+        paddingBottom: "32px",
       }}
     >
       <Head>
@@ -103,7 +106,7 @@ export default function Home() {
       <section
         data-aos="fade-up"
         style={{
-          backgroundColor: "black",
+          backgroundColor: "#222",
           color: "white",
           padding: "32px 24px",
           textAlign: "center",
@@ -510,6 +513,9 @@ export default function Home() {
         <a href="https://web.facebook.com/profile.php?id=61559247897190" target="_blank" style={iconStyle}>
           <img src="/facebook-icon.png" alt="Facebook" style={iconImageStyle} />
         </a>
+        <a href="https://www.tiktok.com/@nayburlee?is_from_webapp=1&sender_device=pc" target="_blank" style={iconStyle}>
+          <img src="/tiktok-icon.png" alt="TikTok" style={iconImageStyle} />
+        </a>
       </div>
 
       <style jsx>{`
@@ -554,8 +560,10 @@ export default function Home() {
 
 // Inline Styles
 const iconStyle = {
-  marginRight: "10px",
+  marginRight: "18px", // Increased gap
+  marginLeft: "18px",
   textDecoration: "none",
+  display: "inline-block",
 };
 
 const iconImageStyle = {

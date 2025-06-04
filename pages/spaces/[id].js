@@ -73,7 +73,7 @@ export default function SpaceDetails() {
         <meta name="twitter:image" content={space.images?.[0] || '/default-image.jpg'} />
       </Head>
 
-      <h1 style={{ color: "#2fd1ba", borderRadius: "10px", textAlign: "center" }} className="text-2xl font-bold mb-4">
+      <h1 style={{ color: "#2fd1ba", borderRadius: "10px", textAlign: "center", paddingRight: "10px", paddingLeft:"10px" }} className="text-2xl font-bold mb-4">
         {space.title || 'Untitled Space'}
       </h1>
 
