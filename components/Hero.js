@@ -47,12 +47,11 @@ export default function Hero() {
         alignItems: "center",
         flexDirection: "column",
         textAlign: "center",
-        marginTop: "20px",
+        marginTop: "0px",
         marginBottom: "0px",
-        padding: "0 10px",
+        padding: "0 4px",
         width: "100%",
         boxSizing: "border-box",
-        height: "150px",
       }}
     >
       <h1 className="hero-title">

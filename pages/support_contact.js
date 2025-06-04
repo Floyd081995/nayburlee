@@ -40,7 +40,7 @@ export default function Contact() {
             <strong>Office Operating Hours:</strong> Monday to Friday, 9:00 AM – 5:00 PM (SAST / GMT+2)
           </li>
           <li>
-            <strong>Head Office:</strong> City of Johannesburg, Gauteng, South Africa
+            <strong>Headquarters:</strong> City of Johannesburg, Gauteng, South Africa
           </li>
         </ul>
         <h3 style={{ color: "#2fd1ba" }}>Social Media</h3>

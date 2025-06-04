@@ -60,7 +60,7 @@ export default function About() {
           </p>
           <h3 style={{ color: "#2fd1ba" }}>How do I reach out for support?</h3>
           <p>
-            For any additional queries, tap into our support channels via our <a href="/contact" style={{ color: "#2fd1ba" }}> Contact Support </a>. Our dedicated team is ready to assist you swiftly.
+            For any additional queries, tap into our support channels via our <a href="/support_contact" style={{ color: "#2fd1ba" }}> Contact Support </a>. Our dedicated team is ready to assist you swiftly.
           </p>
           <h3 style={{ color: "#2fd1ba" }}>Is Nayburlee available in my area?</h3>
           <p>

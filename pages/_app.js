@@ -17,7 +17,7 @@ function App({ Component, pageProps }) {
   };
 
   const closeNav = () => {
-    setNavOpen(false);
+    setTimeout(() => setNavOpen(false), 350); // Wait for fade-out
   };
 
   useEffect(() => {
@@ -110,7 +110,20 @@ function App({ Component, pageProps }) {
         <meta name="twitter:image" content="/nayburlee-preview.jpg" />
       </Head>
 
-      <div className="main-header">
+      <div
+        className="main-header"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          zIndex: 3000,
+          background: "#222",
+          transition: "box-shadow 0.2s",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+          borderRadius: "0 0 18px 18px",
+        }}
+      >
         <header>
           <nav className="nav-container">
             {/* Left Section: Logo */}
@@ -133,13 +146,13 @@ function App({ Component, pageProps }) {
               aria-label={navOpen ? "Close menu" : "Open menu"}
             >
               {navOpen ? (
-                // Close (X) icon SVG
+                // X icon
                 <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
                   <line x1="8" y1="8" x2="24" y2="24" stroke="#2FD1BA" strokeWidth="3" strokeLinecap="round"/>
                   <line x1="24" y1="8" x2="8" y2="24" stroke="#2FD1BA" strokeWidth="3" strokeLinecap="round"/>
                 </svg>
               ) : (
-                // Hamburger icon SVG
+                // Hamburger icon
                 <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
                   <line x1="7" y1="10" x2="25" y2="10" stroke="#2FD1BA" strokeWidth="3" strokeLinecap="round"/>
                   <line x1="7" y1="16" x2="25" y2="16" stroke="#2FD1BA" strokeWidth="3" strokeLinecap="round"/>
@@ -196,12 +209,17 @@ function App({ Component, pageProps }) {
             <a href="https://web.facebook.com/profile.php?id=61559247897190" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
               <img src="/facebook-icon.png" alt="Facebook" style={{ height: "32px", margin: "0 8px" }} />
             </a>
+            <a href="https://www.tiktok.com/@nayburlee?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+              <img src="/tiktok-icon.png" alt="TikTok" style={{ height: "32px", margin: "0 8px" }} />
+            </a>
           </div>
         </div>
       )}
 
       {/* Page Content */}
-      <Component {...pageProps} />
+      <div className="main-content-container">
+        <Component {...pageProps} />
+      </div>
       <CookieBanner />
     </>
   );
