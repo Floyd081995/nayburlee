@@ -79,10 +79,9 @@ export default function Home() {
           color: "white",
         }}
       >
-        <p className="hero-subtitle" style={{ fontSize: "1.5rem", marginTop: "10px" }}>
+        <p className="hero-subtitle">
           Discover creative and hybrid workspaces in South Africa tailored to your needs — all bookable by the hour, day, week or month.
-          <br />
-          <br />
+          <br /><br />
           <strong>No leases.</strong>
           <br />
           First 10 bookings get <span className="highlight">15% off</span> !
@@ -117,12 +116,6 @@ export default function Home() {
       >
         <p
           className="hero-subtitle"
-          style={{
-            textAlign: "center",
-            marginTop: "0px",
-            marginBottom: "8px",
-            fontSize: "1.5rem",
-          }}
         >
           Or looking to list space?
         </p>
@@ -138,20 +131,6 @@ export default function Home() {
             href="https://forms.gle/Gh7Rpvkua3qquDTdA"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              margin: "0 auto",
-              minWidth: "120px",
-              padding: "12px 28px",
-              color: "#fff",
-              borderRadius: "6px",
-              fontWeight: "bold",
-              fontSize: "18px",
-              textDecoration: "none",
-              border: "none",
-              cursor: "pointer",
-              transition: "background 0.4s",
-            }}
           >
             Partner With Us
           </a>
@@ -160,6 +139,7 @@ export default function Home() {
 
       {/* What is Nayburlee Section */}
       <section
+        className="nayburlee-section"
         data-aos="fade-up"
         style={{
           backgroundColor: "white",
@@ -171,7 +151,7 @@ export default function Home() {
 
         }}
       >
-        <h2 style={{ marginTop: "10px", marginBottom: "5px", fontSize: "40px" }}>
+        <h2 style={{ marginTop: "10px", marginBottom: "5px" }}>
           What is Nayburlee?
         </h2>
         <img src="nayburlee-logo-image.png" alt="Nayburlee Logo" width="6%" />
@@ -188,7 +168,7 @@ export default function Home() {
 
       {/* How We Work Section */}
       <section data-aos="fade-up" style={{ marginTop: "60px", textAlign: "center" }}>
-        <h2 style={{ textAlign: "center", fontSize: "60px", marginTop: "20px" }}>How We Work</h2>
+        <h2 style={{ textAlign: "center", fontSize: "40px", marginTop: "20px" }}>How We Work</h2>
         <div
           className="how-we-work-steps"
           style={{
@@ -301,7 +281,7 @@ export default function Home() {
       >
         Featured Properties
       </h2>
-      <Slider {...sliderSettings} data-aos="fade-up">
+      <Slider {...sliderSettings} data-aos="fade-up" className="featured-properties-section">
         <div>
           <div
             style={{
@@ -339,7 +319,7 @@ export default function Home() {
               }}
             />
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>
+          <p className="featured-properties-paragraph" style={{ textAlign: "center", marginTop: "10px" }}>
             Podcast Studio | Johannesburg - Dainfern
             <br />
             Studio has 3 microphones, soundproof walls, and capacity for 4 creators.
@@ -382,7 +362,7 @@ export default function Home() {
               }}
             />
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>
+          <p className="featured-properties-paragraph" style={{ textAlign: "center", marginTop: "10px" }}>
             Content Creation Room | Durban - Glenwood
             <br />
             Equipped with lighting, green screen, and recording tools for high-quality photography, videography, and livestreaming. Capacity: 4 creators.
@@ -425,7 +405,7 @@ export default function Home() {
               }}
             />
           </div>
-          <p style={{ textAlign: "center", marginTop: "10px" }}>
+          <p className="featured-properties-paragraph" style={{ textAlign: "center", marginTop: "10px" }}>
             Hybrid Space | Cape Town - Woodstock
             <br />
             Flexible workspace designed for both teamwork and solo productivity. Includes Wi-Fi, ergonomic furniture, and presentation tools. Capacity: Up to 10 people.
@@ -435,24 +415,25 @@ export default function Home() {
 
       {/* Ready to Find Your Ideal Space Section */}
       <section
+        className="ready-section"
         data-aos="fade-up"
         style={{
           backgroundColor: "#2fd1ba",
           color: "white",
           padding: "40px 20px",
           textAlign: "center",
-          marginTop: "60px",
+          marginTop: "30px",
           borderRadius: "10px",
         }}
       >
-        <h2 style={{ fontSize: "30px" }}>Ready to Find Your ideal Space?</h2>
-        <p style={{ marginTop: "10px", fontSize: "20px" }}>
+        <h2>Ready to Find Your ideal Space?</h2>
+        <p style={{ marginTop: "10px" }}>
           No subscriptions. No long-term commitments. Just the space you need, when you need it.
         </p>
-        <p style={{ marginTop: "10px", fontSize: "20px" }}>
+        <p style={{ marginTop: "10px" }}>
           Join a community of creators and professionals who trust Nayburlee.
         </p>
-        <p style={{ marginTop: "10px", fontSize: "20px" }}>✅ Match guaranteed</p>
+        <p style={{ marginTop: "10px" }}>✅ Match guaranteed</p>
         <a
           href="https://forms.gle/FHhkD2iDEKZ2urqY8"
           target="_blank"
@@ -472,7 +453,7 @@ export default function Home() {
       <br />
 
       {/* Testimonial Section */}
-      <section data-aos="fade-up">
+      <section data-aos="fade-up" className="trusted-users-section">
         <h2 style={{ textAlign: "center", fontSize: "40px", marginTop: "30px", marginBottom: "10px" }}>
           Trusted by Users
         </h2>
@@ -533,11 +514,7 @@ export default function Home() {
           line-height: 1.2;
           margin-bottom: 20px;
         }
-        .hero-subtitle {
-          font-size: 1.2rem;
-          max-width: 700px;
-          margin: 0 auto 30px;
-        }
+      
         .subtitle-hero {
           margin-top: 0;
           text-align: center;
