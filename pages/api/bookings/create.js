@@ -145,6 +145,14 @@ export default async function handler(req, res) {
       bookingDateTimeLocal = `${startStr} – ${endStr}`;
     }
 
+    // Encode location for URL
+    const encodedLocation = encodeURIComponent(listing.location || "");
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedLocation}`;
+    const appleMapsUrl = `http://maps.apple.com/?q=${encodedLocation}`;
+
+    // Get first image URL
+    const firstImageUrl = Array.isArray(listing.images) && listing.images.length > 0 ? listing.images[0] : "";
+
     // Send email
     await sendBookingActionEmail({
       landlordEmail: listing.ownercontactInfo,
@@ -165,6 +173,9 @@ export default async function handler(req, res) {
       bookingType,
       name,
       message,
+      googleMapsUrl,
+      appleMapsUrl,
+      firstImageUrl,
       listingType: type, 
       templateId: 'd-7ade5d01048d4fe9aceedde2322e91a0',
       bookingDateTimeLocal,
