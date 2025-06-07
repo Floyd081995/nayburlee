@@ -35,7 +35,7 @@ class MyDocument extends Document {
           <meta property="og:site_name" content="Nayburlee" />
           <meta property="og:title" content="Nayburlee | Creative & Hybrid Workspaces in South Africa"/>
           <meta property="og:description" content="Book flexible podcast studios, content creation rooms, voiceover studios, and hybrid workspaces across South Africa—by the hour, day, week, or month. No leases. No hassle."/>
-          <meta property="og:image" content="https://nayburlee.co.za/og-image.jpg" />
+          <meta property="og:image" content="https://nayburlee.co.za/preview-image.jpeg" />
           <meta property="og:url" content="https://nayburlee.co.za" />
           <meta property="og:type" content="website" />
 
@@ -43,7 +43,7 @@ class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Nayburlee | Creative & Hybrid Workspaces in South Africa"/>
           <meta name="twitter:description" content="Book flexible podcast studios, content creation rooms, voiceover studios, and hybrid workspaces across South Africa—by the hour, day, week, or month. No leases. No hassle."/>
-          <meta name="twitter:image" content="https://nayburlee.co.za/og-image.jpg" />
+          <meta name="twitter:image" content="https://nayburlee.co.za/preview-image.jpeg" />
 
           {/* Favicon */}
           <link rel="icon" href="/favicon.ico" />
